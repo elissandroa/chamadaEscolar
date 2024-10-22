@@ -1,15 +1,12 @@
 import { DataTypes } from "sequelize";
 import db from '../db/conn';
 
-
-const Role = db.define('Role', {
-    authority: {
+const Discipline = db.define('Discipline', {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     }
 })
 
 
-
-
-export default Role;
+export default Discipline;

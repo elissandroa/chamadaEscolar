@@ -4,6 +4,7 @@ import conn from './src/db/conn';
 import { Sequelize } from 'sequelize';
 import userRouter from './src/routes/userRoutes';
 import roleRouter from './src/routes/roleRotes';
+import disciplineRouter from './src/routes/disciplineRotes';
 
 
 function createApp() {
@@ -15,6 +16,7 @@ function createApp() {
 
     app.use(cors());
 
+    app.use('/disciplines', disciplineRouter);
     app.use('/users', userRouter);
     app.use('/roles', roleRouter);
 
