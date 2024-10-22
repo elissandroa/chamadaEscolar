@@ -2,6 +2,8 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import conn from './src/db/conn';
 import { Sequelize } from 'sequelize';
+import userRouter from './src/routes/userRoutes';
+import roleRouter from './src/routes/roleRotes';
 
 
 function createApp() {
@@ -12,6 +14,9 @@ function createApp() {
     app.use(express.json());
 
     app.use(cors());
+
+    app.use('/users', userRouter);
+    app.use('/roles', roleRouter);
 
 
     conn.sync().then(() => {
