@@ -10,6 +10,7 @@ import schoolTestRoutes from './src/routes/schoolTestRoutes';
 import tutorRoutes from './src/routes/tutorRoutes';
 import studentRoutes from './src/routes/studentRoutes';
 import teacherRoutes from './src/routes/teacherRoutes';
+import schoolRoutes from './src/routes/schoolRoutes';
 
 
 function createApp() {
@@ -25,6 +26,7 @@ function createApp() {
     app.use('/disciplines', disciplineRoutes);
     app.use('/instruments', instrumentRoutes)
     app.use('/roles', roleRoutes);
+    app.use('/schools', schoolRoutes);
     app.use('/schoolTests', schoolTestRoutes);
     app.use('/students', studentRoutes);
     app.use('teachers', teacherRoutes);
