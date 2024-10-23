@@ -10,7 +10,7 @@ export class SchoolTestController {
         if (schoolTests !== null) {
             res.status(200).json(schoolTests);
         } else {
-            res.status(404).json({ message: "Usuário não econtrado!" });
+            res.status(404).json({ message: "Registro não econtrado!" });
         }
 
     }
@@ -21,7 +21,7 @@ export class SchoolTestController {
         if (schoolTest !== null) {
             res.status(200).json(schoolTest);
         } else {
-            res.status(404).json({ message: "Usuário não econtrado!" });
+            res.status(404).json({ message: "Registro não econtrado!" });
         }
     }
 
@@ -53,7 +53,7 @@ export class SchoolTestController {
         if (schoolTestUpdated !== null) {
             res.status(200).json(schoolTestUpdated);
         } else {
-            res.status(404).json({ message: "Usuário não econtrado!" });
+            res.status(404).json({ message: "Registro não econtrado!" });
         }
 
     }
@@ -65,7 +65,7 @@ export class SchoolTestController {
         if (schoolTestDeleted !== null) {
             res.status(200).json({ message: "Deletado com sucesso!" });
         } else {
-            res.status(404).json({ message: "Usuário não econtrado!" });
+            res.status(404).json({ message: "Registro não econtrado!" });
         }
     }
 

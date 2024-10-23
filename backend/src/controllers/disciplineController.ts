@@ -10,7 +10,7 @@ export class DisciplineController {
         if (discipline !== null) {
             res.status(200).json(discipline);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
 
     }
@@ -21,7 +21,7 @@ export class DisciplineController {
         if (discipline !== null) {
             res.status(200).json(discipline);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
     }
 
@@ -49,7 +49,7 @@ export class DisciplineController {
         if (disciplineUpdated !== null) {
             res.status(200).json(disciplineUpdated);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
 
     }
@@ -61,7 +61,7 @@ export class DisciplineController {
         if (disciplineDelete !== null) {
             res.status(200).json({ message: "Deletado com sucesso!" });
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
     }
 

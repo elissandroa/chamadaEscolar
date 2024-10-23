@@ -10,7 +10,7 @@ export class TutorController {
         if (tutor !== null) {
             res.status(200).json(tutor);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
 
     }
@@ -21,7 +21,7 @@ export class TutorController {
         if (tutor !== null) {
             res.status(200).json(tutor);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
     }
 
@@ -49,7 +49,7 @@ export class TutorController {
         if (tutorUpdated !== null) {
             res.status(200).json(tutorUpdated);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
 
     }
@@ -61,7 +61,7 @@ export class TutorController {
         if (tutorDelete !== null) {
             res.status(200).json({ message: "Deletado com sucesso!" });
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
     }
 

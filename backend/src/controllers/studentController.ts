@@ -10,7 +10,7 @@ export class StudentController {
         if (student !== null) {
             res.status(200).json(student);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
 
     }
@@ -21,7 +21,7 @@ export class StudentController {
         if (student !== null) {
             res.status(200).json(student);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
     }
 
@@ -49,7 +49,7 @@ export class StudentController {
         if (studentUpdated !== null) {
             res.status(200).json(studentUpdated);
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
 
     }
@@ -61,7 +61,7 @@ export class StudentController {
         if (studentDelete !== null) {
             res.status(200).json({ message: "Deletado com sucesso!" });
         } else {
-            res.status(404).json({ message: "Disciplina não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrada!" });
         }
     }
 
