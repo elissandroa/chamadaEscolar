@@ -2,9 +2,11 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import conn from './src/db/conn';
 import { Sequelize } from 'sequelize';
-import userRouter from './src/routes/userRoutes';
-import roleRouter from './src/routes/roleRotes';
-import disciplineRouter from './src/routes/disciplineRotes';
+import userRoutes from './src/routes/userRoutes';
+import roleRoutes from './src/routes/roleRotes';
+import disciplineRoutes from './src/routes/disciplineRotes';
+import instrumentRoutes from './src/routes/instrumentRotes';
+import schoolTestRoutes from './src/routes/schoolTestRoutes';
 
 
 function createApp() {
@@ -16,9 +18,11 @@ function createApp() {
 
     app.use(cors());
 
-    app.use('/disciplines', disciplineRouter);
-    app.use('/users', userRouter);
-    app.use('/roles', roleRouter);
+    app.use('/schoolTests', schoolTestRoutes);
+    app.use('/instruments', instrumentRoutes)
+    app.use('/disciplines', disciplineRoutes);
+    app.use('/users', userRoutes);
+    app.use('/roles', roleRoutes);
 
 
     conn.sync().then(() => {
