@@ -8,6 +8,7 @@ import disciplineRoutes from './src/routes/disciplineRotes';
 import instrumentRoutes from './src/routes/instrumentRotes';
 import schoolTestRoutes from './src/routes/schoolTestRoutes';
 import tutorRoutes from './src/routes/tutorRoutes';
+import studentRoutes from './src/routes/studentRoutes';
 
 
 function createApp() {
@@ -19,22 +20,25 @@ function createApp() {
 
     app.use(cors());
 
-    app.use('/schoolTests', schoolTestRoutes);
-    app.use('/instruments', instrumentRoutes)
+
     app.use('/disciplines', disciplineRoutes);
+    app.use('/instruments', instrumentRoutes)
+    app.use('/roles', roleRoutes);
+    app.use('/schoolTests', schoolTestRoutes);
+    app.use('/students', studentRoutes);
     app.use('/tutors', tutorRoutes);
     app.use('/users', userRoutes);
-    app.use('/roles', roleRoutes);
+
 
 
     conn.sync().then(() => {
         app.listen(PORT, () => {
             console.log(`Rodando na porta ${PORT}!`)
         })
-    }). catch((err:Error) => {
+    }).catch((err: Error) => {
         console.error(`Não foi possível conectar ao banco: ${err}`)
     })
-        
+
     return app;
 
 
