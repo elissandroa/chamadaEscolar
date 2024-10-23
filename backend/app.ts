@@ -11,6 +11,9 @@ import tutorRoutes from './src/routes/tutorRoutes';
 import studentRoutes from './src/routes/studentRoutes';
 import teacherRoutes from './src/routes/teacherRoutes';
 import schoolRoutes from './src/routes/schoolRoutes';
+import addressRoutes from './src/routes/addressRoutes';
+import schoolRollCallRoutes from './src/routes/schoolRollCallRoutes';
+import classRoomRoutes from './src/routes/classRoomRoutes';
 
 
 function createApp() {
@@ -22,10 +25,12 @@ function createApp() {
 
     app.use(cors());
 
-
+    app.use('/addresses', addressRoutes);
+    app.use('/classrooms', classRoomRoutes);
     app.use('/disciplines', disciplineRoutes);
     app.use('/instruments', instrumentRoutes)
     app.use('/roles', roleRoutes);
+    app.use('/schoolRollCalls', schoolRollCallRoutes);
     app.use('/schools', schoolRoutes);
     app.use('/schoolTests', schoolTestRoutes);
     app.use('/students', studentRoutes);
