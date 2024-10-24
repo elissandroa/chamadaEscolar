@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import db from '../db/conn';
+import Student from "./student";
 
 const SchoolTest = db.define('SchoolTest', {
     name: {
@@ -15,6 +16,5 @@ const SchoolTest = db.define('SchoolTest', {
         allowNull: false
     }
 })
-
 
 export default SchoolTest;

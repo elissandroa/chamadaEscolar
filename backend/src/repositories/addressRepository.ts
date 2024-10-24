@@ -1,4 +1,4 @@
-import Address from '../models/Address';
+import Address from '../models/address';
 import { addressType } from '../types/address';
 
 

@@ -40,7 +40,7 @@ function createApp() {
 
 
 
-    conn.sync().then(() => {
+    conn.sync({force:true}).then(() => {
         app.listen(PORT, () => {
             console.log(`Rodando na porta ${PORT}!`)
         })
