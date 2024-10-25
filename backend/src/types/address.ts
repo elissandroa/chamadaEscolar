@@ -4,5 +4,7 @@ export type addressType = {
     num: string,
     neighborhood: string,
     city: string,
-    zipcode: string
+    zipcode: string,
+    StudentId?: number,
+    SchoolId?:number
 }

@@ -27,7 +27,7 @@ export class RoleController {
 
     static async postRoleController(req: Request, res: Response) {
         const role: roleType = {
-            name: req.body.name,
+            authority: req.body.authority,
         }
 
         const newRole = await service.postRoleService(role);
@@ -41,7 +41,7 @@ export class RoleController {
         const id = parseInt(req.params.id);
 
         const role: roleType = {
-            name: req.body.name,
+            authority: req.body.authority,
         }
 
         const roleUpdated = await service.patchRoleService(id, role)

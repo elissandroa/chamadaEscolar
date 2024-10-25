@@ -4,7 +4,7 @@ import ClassRoom from "./classRoom";
 import schoolRollCallsClassRooms from "./schoolRollCallsClassRooms";
 
 const SchoolRollCall = db.define('SchoolRollCall', {
-    name: {
+    presence: {
         type: DataTypes.STRING,
         allowNull: false
     }

@@ -1,3 +1,5 @@
+import Address from '../models/address';
+import Instrument from '../models/instrument';
 import Student from '../models/student';
 import { studentType } from '../types/student';
 
@@ -5,12 +7,12 @@ import { studentType } from '../types/student';
 export class StudentRepository {
 
     static async getStudentRepository() {
-        const students = await Student.findAll();
+        const students = await Student.findAll({include: Instrument});
         return students;
     }
 
     static async getStudentByIdRepository(id: number) {
-        const student = await Student.findOne({ where: { id: id } });
+        const student = await Student.findOne({ where: { id: id }, include: Instrument });
         return student;
     }
 
@@ -24,7 +26,7 @@ export class StudentRepository {
         const studentFinded = await Student.findOne({ where: { id: id } });
         if (studentFinded != null) {
             await Student.update(student, { where: { id: id } })
-            const studentUpdated = await Student.findOne({ where: { id: id } });
+            const studentUpdated = await Student.findOne({ where: { id: id }, include: Instrument });
             return studentUpdated;
         } else {
             return studentFinded;

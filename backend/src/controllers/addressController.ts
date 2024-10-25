@@ -10,7 +10,7 @@ export class AddressController {
         if (addresss !== null) {
             res.status(200).json(addresss);
         } else {
-            res.status(404).json({ message: "Usuário não econtrado!" });
+            res.status(404).json({ message: "Registro não econtrado!" });
         }
 
     }
@@ -21,7 +21,7 @@ export class AddressController {
         if (address !== null) {
             res.status(200).json(address);
         } else {
-            res.status(404).json({ message: "Usuário não econtrado!" });
+            res.status(404).json({ message: "Registro não econtrado!" });
         }
     }
 
@@ -31,7 +31,17 @@ export class AddressController {
             num: req.body.num,
             neighborhood: req.body.neighborhood,
             city: req.body.city,
-            zipcode: req.body.zipcode
+            zipcode: req.body.zipcode,
+            SchoolId: req.body.SchoolId,
+            StudentId: req.body.StudentId
+        }
+
+        if(!req.body.SchoolId) {
+            delete address.SchoolId;
+        }
+
+        if(!req.body.StudentId){
+            delete address.StudentId;
         }
 
         const newAddress = await service.postAddressService(address);
@@ -43,13 +53,14 @@ export class AddressController {
     static async patchAddressController(req: Request, res: Response) {
 
         const id = parseInt(req.params.id);
-
+        
         const address: addressType = {
             street: req.body.street,
             num: req.body.num,
             neighborhood: req.body.neighborhood,
             city: req.body.city,
-            zipcode: req.body.zipcode
+            zipcode: req.body.zipcode,
+            SchoolId: req.body.SchoolId,
         }
 
         const addressUpdated = await service.patchAddressService(id, address)
@@ -57,7 +68,7 @@ export class AddressController {
         if (addressUpdated !== null) {
             res.status(200).json(addressUpdated);
         } else {
-            res.status(404).json({ message: "Usuário não econtrado!" });
+            res.status(404).json({ message: "Registro não econtrado!" });
         }
 
     }
@@ -69,7 +80,7 @@ export class AddressController {
         if (addressDeleted !== null) {
             res.status(200).json({ message: "Deletado com sucesso!" });
         } else {
-            res.status(404).json({ message: "Usuário não econtrado!" });
+            res.status(404).json({ message: "Registro não econtrado!" });
         }
     }
 

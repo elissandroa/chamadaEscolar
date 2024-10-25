@@ -23,7 +23,7 @@ export class SchoolTestRepository {
     static async patchSchoolTestRepository(id: number, schooltest: schoolTestType) {
         const schoolTestFinded = await SchoolTest.findOne({ where: { id: id } });
         if (schoolTestFinded != null) {
-            await SchoolTest.update(SchoolTest, { where: { id: id } })
+            await SchoolTest.update(schooltest, { where: { id: id } })
             const schoolTestUpdated = await SchoolTest.findOne({ where: { id: id } });
             return schoolTestUpdated;
         } else {

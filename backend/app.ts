@@ -34,13 +34,13 @@ function createApp() {
     app.use('/schools', schoolRoutes);
     app.use('/schoolTests', schoolTestRoutes);
     app.use('/students', studentRoutes);
-    app.use('teachers', teacherRoutes);
+    app.use('/teachers', teacherRoutes);
     app.use('/tutors', tutorRoutes);
     app.use('/users', userRoutes);
 
 
 
-    conn.sync({force:true}).then(() => {
+    conn.sync().then(() => {
         app.listen(PORT, () => {
             console.log(`Rodando na porta ${PORT}!`)
         })

@@ -1,4 +1,6 @@
 export type studentType = {
-    id?:number,
-    name:string
+    id?: number,
+    name: string,
+    InstrumentId: number,
+    ClassRoomId?: number
 }

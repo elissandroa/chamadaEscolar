@@ -29,7 +29,8 @@ export class SchoolTestController {
         const schoolTest: schoolTestType = {
             name: req.body.name,
             description: req.body.description,
-            grade: req.body.grade
+            grade: req.body.grade,
+            StudentId: req.body.StudentId
         }
 
         const newSchoolTest = await service.postSchoolTestService(schoolTest);
@@ -45,7 +46,8 @@ export class SchoolTestController {
         const schoolTest: schoolTestType = {
             name: req.body.name,
             description: req.body.description,
-            grade: req.body.grade
+            grade: req.body.grade,
+            StudentId: req.body.StudentId
         }
 
         const schoolTestUpdated = await service.patchSchoolTestService(id, schoolTest)

@@ -27,8 +27,16 @@ export class ClassRoomController {
 
     static async postClassRoomController(req: Request, res: Response) {
         const classRoom: classRoomType = {
-            name: req.body.name
+            name: req.body.name,
+            SchoolId: req.body.SchoolId,
+            SchoolRollCallId: req.body.SchoolRollCallId,
+            Students: req.body.Students
         }
+
+        if(!req.body.SchoolRollCallId) {
+            delete classRoom.SchoolRollCallId;
+        }
+
 
         const newClassRoom = await service.postClassRoomService(classRoom);
 
@@ -41,8 +49,16 @@ export class ClassRoomController {
         const id = parseInt(req.params.id);
 
         const classRoom: classRoomType = {
-            name: req.body.name
+            name: req.body.name,
+            SchoolId : req.body.SchoolId,
+            SchoolRollCallId: req.body.SchoolRollCallId,
+            Students: req.body.Students
         }
+
+        if(!req.body.SchoolRollCallId) {
+            delete classRoom.SchoolRollCallId;
+        }
+
 
         const classRoomUpdated = await service.patchClassRoomService(id, classRoom)
 
