@@ -27,7 +27,8 @@ export class SchoolController {
 
     static async postSchoolController(req: Request, res: Response) {
         const school: schoolType = {
-            name: req.body.name
+            name: req.body.name,
+            Addresses: req.body.Addresses
         }
 
         const newSchool = await service.postSchoolService(school);
@@ -41,7 +42,8 @@ export class SchoolController {
         const id = parseInt(req.params.id);
 
         const school: schoolType = {
-            name: req.body.name
+            name: req.body.name,
+            Addresses: req.body.Addresses
         }
 
         const schoolUpdated = await service.patchSchoolService(id, school)
