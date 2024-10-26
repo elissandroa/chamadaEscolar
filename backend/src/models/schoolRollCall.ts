@@ -17,7 +17,6 @@ SchoolRollCall.belongsToMany(ClassRoom , {
     constraints: true
 })
 
-ClassRoom.belongsTo(SchoolRollCall);
 
 
 export default SchoolRollCall;

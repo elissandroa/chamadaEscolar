@@ -24,10 +24,6 @@ Student.hasMany(SchoolTest, {
     constraints: true
 })
 
-Student.hasMany(Address, {
-    constraints: true
-})
-
 
 Student.belongsToMany(Tutor, {
     through: {

@@ -37,7 +37,7 @@ export class ClassRoomRepository {
 
     static async patchClassRoomRepository(id: number, classRoom: classRoomType) {
         const classRoomFinded = await ClassRoom.findOne({ where: { id: id } });
-        
+
         if (classRoomFinded != null) {
 
 
@@ -65,12 +65,13 @@ export class ClassRoomRepository {
                 }
             }
 
-            if(classRoom.Students.length > studentsBd.length) {
+            if (classRoom.Students.length > studentsBd.length) {
                 for (let i = 0; i < studentsToAdd.length; i++) {
                     const student = await Student.findByPk(studentsToAdd[i]);
                     await classRoomFinded.addStudent(student);
                 }
             }
+
             const updatedClassRoom = await ClassRoom.findOne({ where: { id: id }, include: Student });
 
 

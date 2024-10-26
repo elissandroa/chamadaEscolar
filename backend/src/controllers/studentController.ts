@@ -28,7 +28,8 @@ export class StudentController {
     static async postStudentController(req: Request, res: Response) {
         const student: studentType = {
             name: req.body.name,
-            InstrumentId: req.body.InstrumentId
+            InstrumentId: req.body.InstrumentId,
+            Addresses: req.body.Addresses
         }
 
         const newStudent = await service.postStudentService(student);
@@ -43,7 +44,8 @@ export class StudentController {
 
         const student: studentType = {
             name: req.body.name,
-            InstrumentId: req.body.InstrumentId
+            InstrumentId: req.body.InstrumentId,
+            Addresses: req.body.Addresses
         }
 
         const studentUpdated = await service.patchStudentService(id, student)
