@@ -28,7 +28,8 @@ export class TeacherController {
     static async postTeacherController(req: Request, res: Response) {
         const teacher: teacherType = {
             name: req.body.name,
-            Addresses: req.body.Addresses
+            Addresses: req.body.Addresses,
+            Disciplines: req.body.Disciplines
         }
 
         const newTeacher = await service.postTeacherService(teacher);
@@ -43,7 +44,8 @@ export class TeacherController {
 
         const teacher: teacherType = {
             name: req.body.name,
-            Addresses: req.body.Addresses
+            Addresses: req.body.Addresses,
+            Disciplines: req.body.Disciplines
         }
 
         const teacherUpdated = await service.patchTeacherService(id, teacher)
