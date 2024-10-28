@@ -27,7 +27,8 @@ export class TutorController {
 
     static async postTutorController(req: Request, res: Response) {
         const tutor: tutorType = {
-            name: req.body.name
+            name: req.body.name,
+            Addresses: req.body.Addresses
         }
 
         const newTutor = await service.postTutorService(tutor);
@@ -41,7 +42,8 @@ export class TutorController {
         const id = parseInt(req.params.id);
 
         const tutor: tutorType = {
-            name: req.body.name
+            name: req.body.name,
+            Addresses: req.body.Addresses
         }
 
         const tutorUpdated = await service.patchTutorService(id, tutor)
