@@ -75,9 +75,9 @@ export class TutorRepository {
 
 
 
-        const studentUpdated = await Tutor.findOne({ where: { id: id }, include: Address });
+        const turorsUpdated = await Tutor.findOne({ where: { id: id }, include: Address });
 
-        return studentUpdated;
+        return turorsUpdated;
     }
 
     static async deleteTutorRepository(id: number) {

@@ -1,4 +1,7 @@
 export type teacherType = {
     id?:number,
-    name:string
+    name:string,
+    Addresses: {
+        [x: string]: any; TeacherId: number; AddressId?: number 
+}[];
 }
