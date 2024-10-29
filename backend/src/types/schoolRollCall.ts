@@ -1,4 +1,10 @@
 export type schoolRollCallType = {
     id?: number,
-    presence: boolean
+    schoolRollCallDate: Date,
+    StudentId?: number,
+    DisciplineId?: number,
+    presence?: boolean,
+    ClassRoomId: number,
+    TeacherId: number,
+    Students?: []
 }

@@ -58,13 +58,13 @@ export class ClassRoomRepository {
             const studentsToDelete = listStudentsDB.filter((item) => !listStudentsReq.includes(item));
             const studentsToAdd = listStudentsReq.filter((item) => !listStudentsDB.includes(item));
 
-
+            console.log("StudentToAdd:", studentsToAdd)
             if (classRoom.Students.length < studentsBd.length) {
                 for (let i = 0; i < studentsToDelete.length; i++) {
                     ClassRoomStudents.destroy({ where: { ClassRoomId: id, StudentId: studentsToDelete[i] } });
                 }
             }
-
+           
             if (classRoom.Students.length > studentsBd.length) {
                 for (let i = 0; i < studentsToAdd.length; i++) {
                     const student = await Student.findByPk(studentsToAdd[i]);

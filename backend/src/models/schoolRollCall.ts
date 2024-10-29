@@ -1,19 +1,35 @@
 import { DataTypes } from "sequelize";
 import db from '../db/conn';
-import ClassRoom from "./classRoom";
-import schoolRollCallsClassRooms from "./schoolRollCallsClassRooms";
+import schoolRollCallsStudents from "./schoolRollCallsStudents";
+import Student from "./student";
+
 
 const SchoolRollCall = db.define('SchoolRollCall', {
-    presence: {
-        type: DataTypes.STRING,
+    schoolRollCallDate: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    DisciplineId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    TeacherId: {
+        type: DataTypes.INTEGER,
         allowNull: false
     }
 })
 
-SchoolRollCall.belongsToMany(ClassRoom , {
+SchoolRollCall.belongsToMany(Student, {
     through: {
-        model: schoolRollCallsClassRooms
-    }, 
+        model: schoolRollCallsStudents
+    },
+    constraints: true
+})
+
+Student.belongsToMany(SchoolRollCall, {
+    through: {
+        model: schoolRollCallsStudents
+    },
     constraints: true
 })
 

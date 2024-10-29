@@ -27,7 +27,10 @@ export class SchoolRollCallController {
 
     static async postSchoolRollCallController(req: Request, res: Response) {
         const schoolRollCall: schoolRollCallType = {
-            presence: req.body.presence
+            schoolRollCallDate: req.body.schoolRollCallDate,
+            ClassRoomId: req.body.ClassRoomId,
+            DisciplineId: req.body.DisciplineId,
+            TeacherId: req.body.TeacherId
         }
 
         const newSchoolRollCall = await service.postSchoolRollCallService(schoolRollCall);
@@ -41,7 +44,11 @@ export class SchoolRollCallController {
         const id = parseInt(req.params.id);
 
         const schoolRollCall: schoolRollCallType = {
-            presence: req.body.presence
+            schoolRollCallDate: req.body.schoolRollCallDate,
+            DisciplineId: req.body.DisciplineId,
+            ClassRoomId: req.body.ClassRoomId,
+            TeacherId: req.body.TeacherId,
+            Students: req.body.Students
         }
 
         const schoolRollCallUpdated = await service.patchSchoolRollCallService(id, schoolRollCall)
