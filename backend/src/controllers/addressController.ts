@@ -32,6 +32,7 @@ export class AddressController {
             neighborhood: req.body.neighborhood,
             city: req.body.city,
             zipcode: req.body.zipcode,
+            state: req.body.state
         }
 
         if(!req.body.SchoolId) {
@@ -58,6 +59,7 @@ export class AddressController {
             neighborhood: req.body.neighborhood,
             city: req.body.city,
             zipcode: req.body.zipcode,
+            state: req.body.state
         }
 
         const addressUpdated = await service.patchAddressService(id, address)

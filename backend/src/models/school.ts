@@ -9,6 +9,10 @@ const School = db.define('School', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    phone: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 })
 

@@ -1,11 +1,9 @@
-import ClassRoom from '../models/classRoom';
 import ClassRoomStudents from '../models/classRoomStudents';
-import Discipline from '../models/discipline';
 import SchoolRollCall from '../models/schoolRollCall';
 import SchoolRollCallsStudents from '../models/schoolRollCallsStudents';
-import schoolRollCallsClassRooms from '../models/schoolRollCallsStudents';
 import Student from '../models/student';
 import { schoolRollCallType } from '../types/schoolRollCall';
+
 
 
 export class SchoolRollCallRepository {
@@ -40,7 +38,7 @@ export class SchoolRollCallRepository {
 
         for (let i = 0; i < studentsInClassRoom.length; i++) {
             const student = await Student.findByPk(studentsInClassRoom[i].dataValues.StudentId);
-            await newSchoolRollCall.addStudent(student, { through: { presence: false, TeacherId: schoolRollCall.TeacherId } });
+            await newSchoolRollCall.addStudent(student, { through: { presence: null, TeacherId: schoolRollCall.TeacherId } });
         }
 
 
@@ -77,7 +75,7 @@ export class SchoolRollCallRepository {
             if (listStudentsDb.length > listStudentsReq.length) {
                 for (let i = 0; i < studentsToAdd.length; i++) {
                     const student = await Student.findByPk(studentsToAdd[i]);
-                    await schoolRollCallFinded.addStudent(student, { through: { presence: false, TeacherId: schoolRollCallFinded.TeacherId } });
+                    await schoolRollCallFinded.addStudent(student, { through: { TeacherId: schoolRollCallFinded.TeacherId } });
                 }
             }
 
@@ -93,8 +91,9 @@ export class SchoolRollCallRepository {
                 for (let i = 0; i < listStudentsReq.length; i++) {
                     if (schoolRollCall.Students) {
                         const presence = schoolRollCall.Students[i].presence;
+                        const medicalCertificate = schoolRollCall.Students[i].medicalCertificate;
                         const student = await Student.findByPk(listStudentsReq[i]);
-                        await schoolRollCallFinded.addStudent(student, { through: { presence: presence, TeacherId: schoolRollCallFinded.TeacherId } });
+                        await schoolRollCallFinded.addStudent(student, { through: { presence: presence, TeacherId: schoolRollCallFinded.TeacherId, medicalCertificate: medicalCertificate } });
                     }
 
                 }

@@ -28,7 +28,8 @@ export class TutorController {
     static async postTutorController(req: Request, res: Response) {
         const tutor: tutorType = {
             name: req.body.name,
-            Addresses: req.body.Addresses
+            phone: req.body.phone,
+            Addresses: req.body.Addresses,
         }
 
         const newTutor = await service.postTutorService(tutor);
@@ -43,6 +44,7 @@ export class TutorController {
 
         const tutor: tutorType = {
             name: req.body.name,
+            phone: req.body.phone,
             Addresses: req.body.Addresses
         }
 

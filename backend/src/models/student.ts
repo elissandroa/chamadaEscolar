@@ -7,16 +7,25 @@ import Address from "./address";
 import ClassRoom from "./classRoom";
 import StudentsTutors from "./studentsTutors";
 import StudentsAddresses from "./studentsAddresses";
+import Graduation from "./graduation";
 
 const Student = db.define('Student', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    phone: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 })
 
 
 Student.belongsTo(Instrument, {
+    constraints: true
+})
+
+Student.belongsTo(Graduation, {
     constraints: true
 })
 
@@ -38,7 +47,7 @@ Tutor.belongsToMany(Student, {
         model: StudentsTutors
     },
     constraints: true
-    
+
 })
 
 

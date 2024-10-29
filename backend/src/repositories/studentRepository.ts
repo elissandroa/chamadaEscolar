@@ -4,17 +4,18 @@ import Instrument from '../models/instrument';
 import Student from '../models/student';
 import { studentType } from '../types/student';
 import StudentsAddresses from '../models/studentsAddresses';
+import Graduation from '../models/graduation';
 
 
 export class StudentRepository {
 
     static async getStudentRepository() {
-        const students = await Student.findAll({ include: Instrument });
+        const students = await Student.findAll({ include: [Instrument, Graduation] });
         return students;
     }
 
     static async getStudentByIdRepository(id: number) {
-        const student = await Student.findOne({ where: { id: id }, include: Instrument });
+        const student = await Student.findOne({ where: { id: id }, include: [Instrument, Graduation]  });
         return student;
     }
 
@@ -77,7 +78,7 @@ export class StudentRepository {
 
 
 
-        const studentUpdated = await Student.findOne({ where: { id: id }, include: [Instrument, Address] });
+        const studentUpdated = await Student.findOne({ where: { id: id }, include: [Instrument, Graduation, Address] });
 
         return studentUpdated;
 

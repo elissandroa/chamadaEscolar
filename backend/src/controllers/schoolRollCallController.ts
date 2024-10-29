@@ -30,7 +30,8 @@ export class SchoolRollCallController {
             schoolRollCallDate: req.body.schoolRollCallDate,
             ClassRoomId: req.body.ClassRoomId,
             DisciplineId: req.body.DisciplineId,
-            TeacherId: req.body.TeacherId
+            TeacherId: req.body.TeacherId,
+            medicalCertificate: req.body.medicalCertificate
         }
 
         const newSchoolRollCall = await service.postSchoolRollCallService(schoolRollCall);
@@ -48,7 +49,8 @@ export class SchoolRollCallController {
             DisciplineId: req.body.DisciplineId,
             ClassRoomId: req.body.ClassRoomId,
             TeacherId: req.body.TeacherId,
-            Students: req.body.Students
+            Students: req.body.Students,
+            medicalCertificate: req.body.medicalCertificate
         }
 
         const schoolRollCallUpdated = await service.patchSchoolRollCallService(id, schoolRollCall)

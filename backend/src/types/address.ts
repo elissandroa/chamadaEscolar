@@ -6,5 +6,6 @@ export type addressType = {
     city: string,
     zipcode: string,
     StudentId?: number,
-    SchoolId?:number
+    SchoolId?:number,
+    state?:string
 }

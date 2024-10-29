@@ -28,6 +28,7 @@ export class TeacherController {
     static async postTeacherController(req: Request, res: Response) {
         const teacher: teacherType = {
             name: req.body.name,
+            phone: req.body.phone,
             Addresses: req.body.Addresses,
             Disciplines: req.body.Disciplines
         }
@@ -44,6 +45,7 @@ export class TeacherController {
 
         const teacher: teacherType = {
             name: req.body.name,
+            phone: req.body.phone,
             Addresses: req.body.Addresses,
             Disciplines: req.body.Disciplines
         }

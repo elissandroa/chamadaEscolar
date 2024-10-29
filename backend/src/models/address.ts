@@ -22,6 +22,10 @@ const Address = db.define('Address', {
     zipcode: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    state: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 })
 

@@ -3,6 +3,8 @@ export type studentType = {
     name: string,
     InstrumentId: number,
     ClassRoomId?: number,
-    Addresses: { StudentId: number; AddressId?: number }[];
+    phone?: string,
+    Addresses: { StudentId: number; AddressId?: number }[];,
+    GraduationId?: number
     
 }

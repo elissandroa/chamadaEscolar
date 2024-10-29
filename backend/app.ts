@@ -14,6 +14,7 @@ import schoolRoutes from './src/routes/schoolRoutes';
 import addressRoutes from './src/routes/addressRoutes';
 import schoolRollCallRoutes from './src/routes/schoolRollCallRoutes';
 import classRoomRoutes from './src/routes/classRoomRoutes';
+import graduationRoutes from './src/routes/graduationRotes';
 
 
 function createApp() {
@@ -28,6 +29,7 @@ function createApp() {
     app.use('/addresses', addressRoutes);
     app.use('/classrooms', classRoomRoutes);
     app.use('/disciplines', disciplineRoutes);
+    app.use('/graduations', graduationRoutes);
     app.use('/instruments', instrumentRoutes)
     app.use('/roles', roleRoutes);
     app.use('/schoolRollCalls', schoolRollCallRoutes);

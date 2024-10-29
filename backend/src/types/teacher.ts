@@ -7,4 +7,5 @@ export type teacherType = {
     Disciplines: {
         TeacherId: number; DisciplineId?: number
     }[];
+    phone?: string
 }

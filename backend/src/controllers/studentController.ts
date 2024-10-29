@@ -29,6 +29,8 @@ export class StudentController {
         const student: studentType = {
             name: req.body.name,
             InstrumentId: req.body.InstrumentId,
+            GraduationId: req.body.GraduationId,
+            phone: req.body.phone,
             Addresses: req.body.Addresses
         }
 
@@ -45,6 +47,8 @@ export class StudentController {
         const student: studentType = {
             name: req.body.name,
             InstrumentId: req.body.InstrumentId,
+            GraduationId: req.body.GraduationId,
+            phone: req.body.phone,
             Addresses: req.body.Addresses
         }
 

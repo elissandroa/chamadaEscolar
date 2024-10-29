@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import db from '../db/conn';
-import Address from "./address";   
+import Address from "./address";
 import TutorsAddresses from "./tutorsAddresses";
 
 
@@ -8,6 +8,10 @@ const Tutor = db.define('Tutor', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    phone: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 })
 

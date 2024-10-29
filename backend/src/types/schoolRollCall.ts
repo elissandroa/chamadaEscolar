@@ -6,5 +6,6 @@ export type schoolRollCallType = {
     presence?: boolean,
     ClassRoomId: number,
     TeacherId: number,
-    Students?: []
+    Students?: [],
+    medicalCertificate?: boolean
 }
