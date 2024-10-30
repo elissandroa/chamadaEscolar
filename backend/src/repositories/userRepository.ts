@@ -14,8 +14,14 @@ export class UserRepository {
         return user;
     }
 
+    static async getUserRepositoryByEmail(email: string) {
+        const user = await User.findOne({ where: { email } });
+        return user;
+    }
+
     static async postUserRepository(user: userType) {
         const newUser = await User.create(user);
+        newUser.dataValues.password = undefined;
         return newUser;
     }
 

@@ -34,9 +34,21 @@ export class UserController {
             RoleId: parseInt(req.body.RoleId)
         }
 
+        if(req.body.password === ""){
+            res.status(422).json({error: "Senha obrigatória!"});
+            return;
+        }
+        
         const newUser = await service.postUserService(user);
 
-        res.status(200).json(newUser);
+        if(newUser != null){
+            res.status(200).json(newUser);
+            return;
+        } else {
+            res.status(422).json({error: "Email já cadastrado!"});
+            return;
+        }
+        
 
     }
 
@@ -71,6 +83,10 @@ export class UserController {
         } else {
             res.status(404).json({ message: "Usuário não econtrado!" });
         }
+    }
+
+    static async postUserLoginController(req:Request, res:Response) {
+        const loggedUser = await service.loginService(req, res);
     }
 
 }
