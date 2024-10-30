@@ -1,14 +1,15 @@
 import express from 'express';
 import { SchoolRollCallController } from "../controllers/schoolRollCallController";
+import authGuard from '../middlewares/authGhard';
 
 
 const router = express.Router();
 
-router.delete('/:id', SchoolRollCallController.deleteSchoolRollCallController);
-router.patch('/:id', SchoolRollCallController.patchSchoolRollCallController);
-router.get('/:id', SchoolRollCallController.getSchoolRollCallByIdController);
-router.get('', SchoolRollCallController.getSchoolRollCallController);
-router.post('', SchoolRollCallController.postSchoolRollCallController);
+router.delete('/:id', authGuard, SchoolRollCallController.deleteSchoolRollCallController);
+router.patch('/:id', authGuard, SchoolRollCallController.patchSchoolRollCallController);
+router.get('/:id', authGuard, SchoolRollCallController.getSchoolRollCallByIdController);
+router.get('', authGuard, SchoolRollCallController.getSchoolRollCallController);
+router.post('', authGuard, SchoolRollCallController.postSchoolRollCallController);
 
 
 

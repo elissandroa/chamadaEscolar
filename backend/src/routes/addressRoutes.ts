@@ -1,14 +1,15 @@
 import express from 'express';
 import { AddressController } from "../controllers/addressController";
+import authGuard from '../middlewares/authGhard';
 
 
 const router = express.Router();
 
-router.delete('/:id', AddressController.deleteAddressController);
-router.patch('/:id', AddressController.patchAddressController);
-router.get('/:id', AddressController.getAddressByIdController);
-router.get('', AddressController.getAddressController);
-router.post('', AddressController.postAddressController);
+router.delete('/:id', authGuard, AddressController.deleteAddressController);
+router.patch('/:id', authGuard, AddressController.patchAddressController);
+router.get('/:id', authGuard, AddressController.getAddressByIdController);
+router.get('', authGuard, AddressController.getAddressController);
+router.post('', authGuard, AddressController.postAddressController);
 
 
 

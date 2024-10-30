@@ -1,14 +1,15 @@
 import express from 'express';
 import { RoleController } from "../controllers/roleController";
+import authGuard from '../middlewares/authGhard';
 
 
 const router = express.Router();
 
 
-router.delete('/:id', RoleController.deleteRoleController);
-router.patch('/:id', RoleController.patchRoleController);
-router.get('/:id', RoleController.getRoleByIdController);
-router.get('/', RoleController.getRoleController);
+router.delete('/:id', authGuard, RoleController.deleteRoleController);
+router.patch('/:id', authGuard, RoleController.patchRoleController);
+router.get('/:id', authGuard, RoleController.getRoleByIdController);
+router.get('/', authGuard, RoleController.getRoleController);
 router.post('/', RoleController.postRoleController);
 
 

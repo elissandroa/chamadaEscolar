@@ -1,15 +1,16 @@
 import express from 'express';
 import { GraduationController } from "../controllers/graduationController";
+import authGuard from '../middlewares/authGhard';
 
 
 const router = express.Router();
 
 
-router.delete('/:id', GraduationController.deleteGraduationController);
-router.patch('/:id', GraduationController.patchGraduationController);
-router.get('/:id', GraduationController.getGraduationByIdController);
-router.get('/', GraduationController.getGraduationController);
-router.post('/', GraduationController.postGraduationController);
+router.delete('/:id', authGuard, GraduationController.deleteGraduationController);
+router.patch('/:id', authGuard, GraduationController.patchGraduationController);
+router.get('/:id', authGuard, GraduationController.getGraduationByIdController);
+router.get('/', authGuard, GraduationController.getGraduationController);
+router.post('/', authGuard, GraduationController.postGraduationController);
 
 
 

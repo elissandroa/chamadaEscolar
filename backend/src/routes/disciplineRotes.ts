@@ -1,15 +1,16 @@
 import express from 'express';
 import { DisciplineController } from "../controllers/disciplineController";
+import authGuard from '../middlewares/authGhard';
 
 
 const router = express.Router();
 
 
-router.delete('/:id', DisciplineController.deleteDisciplineController);
-router.patch('/:id', DisciplineController.patchDisciplineController);
-router.get('/:id', DisciplineController.getDisciplineByIdController);
-router.get('/', DisciplineController.getDisciplineController);
-router.post('/', DisciplineController.postDisciplineController);
+router.delete('/:id', authGuard, DisciplineController.deleteDisciplineController);
+router.patch('/:id', authGuard, DisciplineController.patchDisciplineController);
+router.get('/:id', authGuard, DisciplineController.getDisciplineByIdController);
+router.get('/', authGuard, DisciplineController.getDisciplineController);
+router.post('/', authGuard, DisciplineController.postDisciplineController);
 
 
 

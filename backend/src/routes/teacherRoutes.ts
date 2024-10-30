@@ -1,14 +1,15 @@
 import express from 'express';
 import { TeacherController } from "../controllers/teacherController";
+import authGuard from '../middlewares/authGhard';
 
 
 const router = express.Router();
 
-router.delete('/:id', TeacherController.deleteTeacherController);
-router.patch('/:id', TeacherController.patchTeacherController);
-router.get('/:id', TeacherController.getTeacherByIdController);
-router.get('', TeacherController.getTeacherController);
-router.post('', TeacherController.postTeacherController);
+router.delete('/:id', authGuard, TeacherController.deleteTeacherController);
+router.patch('/:id', authGuard, TeacherController.patchTeacherController);
+router.get('/:id', authGuard, TeacherController.getTeacherByIdController);
+router.get('', authGuard, TeacherController.getTeacherController);
+router.post('', authGuard, TeacherController.postTeacherController);
 
 
 
