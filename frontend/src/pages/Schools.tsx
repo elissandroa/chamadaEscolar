@@ -1,17 +1,14 @@
 import { ItemList } from "../components/ItemList"
 import { NavbarLists } from "../components/NavbarLists"
 
-
-export const ClassRooms = () => {
+export const Schools = () => {
   return (
     <div className="lists-container">
-    <h1>Turmas</h1>
+    <h1>Escolas</h1>
     <NavbarLists />
     <div className="list-pages-container">
         <ul>
-            <ItemList classroom={'Segunda/Quarta/Sexta - 2024'} />
-            <ItemList classroom={'Terça/Quinta - 2024'} />
-            <ItemList classroom={'Sábado - 2024'} />
+            <ItemList name={'Colégio Social Madre Clélia - SAGRADO rede de Educação'} />
         </ul>
     </div>
 </div>

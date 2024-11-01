@@ -1,10 +1,9 @@
-import { ImAddressBook } from 'react-icons/im';
 import './home.css';
 import { PiStudent } from "react-icons/pi";
 import { TbSchoolBell } from 'react-icons/tb';
-import { SiAudiobookshelf, SiGoogleclassroom } from 'react-icons/si';
-import { GiMaterialsScience, GiSaxophone, GiTeacher } from 'react-icons/gi';
-import { Link } from 'react-router-dom'
+import { SiAudiobookshelf } from 'react-icons/si';
+import { Link } from 'react-router-dom';
+import { BsDatabaseFillCheck } from 'react-icons/bs';
 export const Home = () => {
     return (
         <div className="home_container">
@@ -18,29 +17,14 @@ export const Home = () => {
                     <TbSchoolBell />
                     <p>Chamadas</p>
                 </li></Link>
-                <Link to={'/addresses'}><li>
-                    <ImAddressBook />
-                    <p>Endereços</p>
-                </li></Link>
-                <Link to={'/disciplines'}><li>
-                    <GiMaterialsScience />
-                    <p>Disciplinas</p>
-                </li></Link>
-                <Link to={'/instruments'}> <li>
-                    <GiSaxophone />
-                    <p>Instrumentos</p>
-                </li></Link>
-                <Link to={'/teachers'}> <li>
-                    <GiTeacher />
-                    <p>Professores</p>
-                </li></Link>
+                
                 <Link to={'/schooltests'}><li>
                     <SiAudiobookshelf />
                     <p>Provas</p>
                 </li></Link>
-                <Link to={'/classrooms'}> <li>
-                    <SiGoogleclassroom />
-                    <p>Turmas</p>
+                <Link to={'/registrations'}> <li>
+                <BsDatabaseFillCheck />
+                    <p>Cadastros</p>
                 </li></Link>
             </ul>
         </div >

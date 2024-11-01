@@ -9,7 +9,7 @@ export const NavbarLists = () => {
   
 
     const onNavigateBack = () => {
-        navigate('/home');
+        navigate(-1);
       }
     
     return (
