@@ -6,7 +6,7 @@ export const Students = () => {
   
   return (
     <div className="lists-container">
-      <h1>Lista de Alunos</h1>
+      <h1>Alunos</h1>
       <NavbarLists/> 
       <div className="list-pages-container">
         <ul>
