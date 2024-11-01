@@ -26,7 +26,7 @@ export const Home = () => {
                     <GiMaterialsScience />
                     <p>Disciplinas</p>
                 </li></Link>
-                <Link to={'/instrumments'}> <li>
+                <Link to={'/instruments'}> <li>
                     <GiSaxophone />
                     <p>Instrumentos</p>
                 </li></Link>
