@@ -1,0 +1,93 @@
+body {
+    max-width: 90vw;
+    max-height: 100vh;
+}
+
+.home_container {
+    height: 80vh;
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    padding: 20px;
+    list-style: none;
+}
+
+.cards_container li {
+    font-size: 3rem;
+    background-color: white;
+    color: blue;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards_container li:hover {
+    background-color: green;
+    color: #FFF;
+    transition: .4s;
+}
+
+.cards_container li a {
+    text-align: center;
+    padding: 0;
+}
+
+.cards_container li p {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+@media only screen and (min-width: 576px) {
+    .cards_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    .cards_container li:hover {
+        background-color: green;
+        color: #FFF;
+        transition: .4s;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .cards_container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+    }
+
+    .home_container {
+        height: 80vh;
+        width: 60vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cards_container li {
+        font-size: 5rem;
+        background-color: white;
+        color: blue;
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+    }
+
+    .cards_container li:hover {
+        background-color: green;
+        color: #FFF;
+        transition: .4s;
+    }
+}
