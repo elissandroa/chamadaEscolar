@@ -7,6 +7,7 @@ import { Instruments } from './pages/Instruments.tsx'
 import { Teachers } from './pages/Teachers.tsx'
 import { Disciplines } from './pages/Disciplines.tsx'
 import { SchoolTests } from './pages/SchoolTests.tsx'
+import { ClassRooms } from './pages/ClassRooms.tsx'
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
 
 
         <Route path='/students' element={<Students />} />
+        <Route path='/classrooms' element={<ClassRooms />} />
         <Route path='/schooltests' element={<SchoolTests />} />
         <Route path='/disciplines' element={<Disciplines />} />
         <Route path='/teachers' element={<Teachers />} />
