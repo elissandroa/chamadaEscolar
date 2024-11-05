@@ -1,0 +1,26 @@
+.success input {
+    background-color: #FFF;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.success input:hover {
+    cursor: pointer;
+    background-color: green;
+    color: #FFF;
+    transition: .3s;
+}
+
+.cancel input {
+    background-color: #FFF;
+    font-size: 1.2rem;
+    border: none;
+}
+
+.cancel input:hover {
+    cursor: pointer;
+    background-color: red;
+    color: #FFF;
+    transition: .3s;
+}

@@ -15,13 +15,15 @@ import { Schools } from './pages/Schools.tsx'
 import { Graduations } from './pages/Graduations.tsx'
 import { Tutors } from './pages/Tutors.tsx'
 import { Users } from './pages/Users.tsx'
+import { FormAddStudent } from './components/FormAddStudent.tsx'
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
 
-
+        
+        <Route path='/addstudents' element={<FormAddStudent />} />
         <Route path='/users' element={<Users />} />
         <Route path='/students' element={<Students />} />
         <Route path='/tutors' element={<Tutors />} />

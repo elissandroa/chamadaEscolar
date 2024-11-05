@@ -1,11 +1,14 @@
 import {  IoAddCircleOutline, IoArrowBackCircleSharp } from 'react-icons/io5';
 import { SearchBar } from './SearchBar';
 import { useNavigate } from 'react-router-dom';
+type Props = {
+  fncForm: () => any; 
+}
 
-export const NavbarLists = () => {
+export const NavbarLists = ({fncForm}:Props) => {
 
     const navigate = useNavigate();
-
+   
   
 
     const onNavigateBack = () => {
@@ -14,7 +17,7 @@ export const NavbarLists = () => {
     
     return (
         <div className='lists-navbar-header'>
-        <button className='add'><IoAddCircleOutline /></button>
+        <button className='add' onClick={fncForm}><IoAddCircleOutline /></button>
         <SearchBar />
         <button onClick={onNavigateBack} className='goBack'><IoArrowBackCircleSharp /></button>
       </div>
