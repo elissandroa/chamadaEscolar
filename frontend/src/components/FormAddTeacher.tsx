@@ -13,9 +13,7 @@ export const FormAddTeacher = ({ formAddVisible, setFormAddVisible }: Props) => 
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
-    const [discipline, setDiscipline] = useState("");
     const [disciplines, setDisciplines] = useState([]);
-    const [disciplineId, setDisciplineId] = useState<number>();
 
     const token = localStorage.getItem('token');
 
@@ -34,7 +32,7 @@ const handleSubmit = async (e: FormEvent<HTMLElement>) => {
         name,
         phone,
         Addresses: [],
-        disciplineId
+        Disciplines: []
     }
 
     await api.post("/teachers", teacher, {

@@ -38,7 +38,8 @@ export const FormEditTeacher = ({ formEditVisible, setFormEditVisible, id }: Pro
         const updatedTeacher = {
             name,
             phone,
-            Addresses: []
+            Addresses: [],
+            Disciplines: []
         }
         api.patch(`/teachers/s/${id}`, updatedTeacher, {
             headers: {

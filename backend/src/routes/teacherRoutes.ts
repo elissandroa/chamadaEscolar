@@ -5,6 +5,7 @@ import authGuard from '../middlewares/authGhard';
 
 const router = express.Router();
 
+router.get('/s/q', authGuard, TeacherController.getTeachersByNameController);
 router.delete('/s/:id', authGuard, TeacherController.deleteTeacherController);
 router.patch('/s/:id', authGuard, TeacherController.patchTeacherController);
 router.get('/s/:id', authGuard, TeacherController.getTeacherByIdController);

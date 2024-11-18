@@ -38,7 +38,6 @@ export const Students = () => {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    console.log("query:", query)
     if (!query) {
       api.get("/students", {
         headers: {
@@ -71,7 +70,7 @@ export const Students = () => {
       <div className="list-pages-container">
         <ul>
           {formAddVisible && <FormAddStudent formAddVisible={formAddVisible} setFormAddVisible={setFormAddVisible} />}
-          {formDeleteVisible && <FormRemoveItem formDeleteVisible={formDeleteVisible} setFormDeleteVisible={setFormDeleteVisible} id={id} />}
+          {formDeleteVisible && <FormRemoveItem formDeleteVisible={formDeleteVisible} setFormDeleteVisible={setFormDeleteVisible} id={id} item='students' title='Aluno' />}
           {formEditVisible && <FormEditStudent formEditVisible={formEditVisible} setFormEditVisible={setFormEditVisible} id={id} />}
           {formViewVisible && <FormViewStudent formViewVisible={formViewVisible} setFormViewVisible={setFormViewVisible} id={id} />}
           {listStudents.length > 0 ? listStudents.map((student) => (

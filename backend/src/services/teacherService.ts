@@ -3,6 +3,11 @@ import { teacherType } from "../types/teacher";
 
 export class TeacherService {
 
+    static async getTeachersByNameService(name:string){
+        const teachers = await repository.getTeachersByNameRepository(name);
+        return teachers;
+    }
+
     static async getTeacherService(){
         const teacher = await repository.getTeacherRepository();
         return teacher;

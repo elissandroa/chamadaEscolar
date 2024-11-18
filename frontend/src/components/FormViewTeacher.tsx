@@ -10,6 +10,7 @@ type Props = {
 }
 
 type teacherType = {
+  [x: string]: any;
   name: string;
   phone: string;
   id: number;
@@ -19,6 +20,7 @@ export const FormViewTeacher = ({ formViewVisible, setFormViewVisible, id }: Pro
   const [teacher, setTeacher] = useState<teacherType>({});
   const [, setName] = useState("");
   const [, setPhone] = useState("");
+  const [disciplines, setDisciplines] = useState<[]>([]);
 
   const token = localStorage.getItem('token');
 
@@ -36,7 +38,17 @@ export const FormViewTeacher = ({ formViewVisible, setFormViewVisible, id }: Pro
   useEffect(() => {
     setName(teacher.name);
     setPhone(teacher.phone);
+    setDisciplines(teacher.Disciplines);
   }, [teacher])
+
+  let listDisciplines: any = [];
+
+  if (disciplines) {
+    for (let i = 0; i < disciplines.length; i++) {
+      listDisciplines.push(disciplines[i]);
+    }
+
+  }
 
   return (
     teacher && <div className="modal">
@@ -44,6 +56,10 @@ export const FormViewTeacher = ({ formViewVisible, setFormViewVisible, id }: Pro
         <h3>{teacher.name}</h3>
         <ul>
           <li>Telefone: {teacher.phone}</li>
+          <p>Disciplinas</p>
+          {listDisciplines.length > 0 && listDisciplines.map((discipline: any) => (
+            <li key={discipline.id}>{discipline.name}</li>
+          ))}
         </ul>
         <div className="form-actions">
           <button onClick={() => setFormViewVisible(!formViewVisible)}>Fechar</button>

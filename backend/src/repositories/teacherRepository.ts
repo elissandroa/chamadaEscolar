@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Address from '../models/address';
 import Discipline from '../models/discipline';
 import Teacher from '../models/teacher';
@@ -9,13 +10,24 @@ import { teacherType } from '../types/teacher';
 
 export class TeacherRepository {
 
+    static async getTeachersByNameRepository(name: string) {
+        const teachers = await Teacher.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        });
+        return teachers;
+    }
+
     static async getTeacherRepository() {
         const teachers = await Teacher.findAll();
         return teachers;
     }
 
     static async getTeacherByIdRepository(id: number) {
-        const teacher = await Teacher.findOne({ where: { id: id } });
+        const teacher = await Teacher.findOne({ where: { id: id }, include: Discipline });
         return teacher;
     }
 

@@ -5,26 +5,28 @@ type Props = {
     formDeleteVisible: boolean;
     setFormDeleteVisible: (formDeleteVisible: boolean) => any;
     id: number;
+    item: string;
+    title:string;
 }
 
 const token = localStorage.getItem('token');
 
-const deleteStudent = async (id: number) => {
-    await api.delete(`/students/s/${id}`, {
+const deleteItem = async (id: number, item:string) => {
+    await api.delete(`/${item}/s/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }).catch((error) => console.log(error));
 }
 
-export const FormRemoveItem = ({ formDeleteVisible, setFormDeleteVisible, id }: Props) => {
+export const FormRemoveItem = ({ formDeleteVisible, setFormDeleteVisible, id, item, title }: Props) => {
     return (
         <div className="modal">
             <div className='deleteContainer'>
-                <h2>Excluir Estudante ?</h2>
+                <h2>Excluir {title} ?</h2>
                 <div className="actionButtons">
                     <button onClick={async () => {
-                        await deleteStudent(id);
+                        await deleteItem(id, item);
                         await setFormDeleteVisible(!formDeleteVisible)
                     }} className='successDelete'>Sim</button>
                     <button onClick={() => {

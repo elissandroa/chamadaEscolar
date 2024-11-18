@@ -5,12 +5,25 @@ import { Request, Response } from "express";
 
 export class TeacherController {
 
+
+    static async getTeachersByNameController(req: Request, res: Response) {
+        const { name } = req.query;
+        const teachers = await service.getTeachersByNameService(String(name));
+
+        if (teachers.length > 0) {
+            res.status(200).json(teachers);
+        } else {
+            res.status(404).json({ message: "Registros não encontrados!" });
+        }
+
+    }
+
     static async getTeacherController(req: Request, res: Response) {
         const teacher = await service.getTeacherService();
         if (teacher !== null) {
             res.status(200).json(teacher);
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
 
     }
