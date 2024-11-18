@@ -6,7 +6,7 @@ import { graduationType } from '../types/graduation';
 export class GraduationRepository {
 
     static async getGraduationByNameRepository(name: string) {
-        const graduations = Graduation.findAll({
+        const graduations = await Graduation.findAll({
             where: {
                 name: {
                     [Op.like]: `%${name}%`

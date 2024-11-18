@@ -8,7 +8,12 @@ export class GraduationController {
     static async getGraduationsByNameController(req: Request, res: Response) {
         const { name } = req.query;
         const graduations = await service.getGraduationsByName(String(name));
-        return graduations;
+        if (graduations.length > 0) {
+            res.status(200).json(graduations);
+        } else {
+            res.status(404).json({ message: "Registro não econtrado!" });
+            return;
+        }
     }
 
     static async getGraduationController(req: Request, res: Response) {
