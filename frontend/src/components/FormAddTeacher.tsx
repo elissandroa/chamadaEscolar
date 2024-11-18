@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react';
-import './addforms.css';
+import './addAndEditForms.css';
 import { FormButton } from './FormButton';
 import api from '../utils/api';
 
@@ -53,7 +53,7 @@ return (
                     <label htmlFor="name">Nome:</label>
                     <input
                         name='name'
-                        placeholder='Digite o nome do aluno'
+                        placeholder='Digite o nome do professor'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -62,7 +62,7 @@ return (
                     <label htmlFor="phone">Telefone:</label>
                     <input
                         name='phone'
-                        placeholder='Digite o telefone do aluno'
+                        placeholder='Digite o telefone do professor'
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                     />

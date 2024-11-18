@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './formViewStudent.css';
+import './formView.css';
 
 import api from '../utils/api';
 

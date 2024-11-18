@@ -5,11 +5,12 @@ import authGuard from '../middlewares/authGhard';
 
 const router = express.Router();
 
-router.delete('/:id', authGuard, ClassRoomController.deleteClassRoomController);
-router.patch('/:id', authGuard, ClassRoomController.patchClassRoomController);
-router.get('/:id', authGuard, ClassRoomController.getClassRoomByIdController);
-router.get('', authGuard, ClassRoomController.getClassRoomController);
-router.post('', authGuard, ClassRoomController.postClassRoomController);
+router.get('/s/q', authGuard, ClassRoomController.getClassRoomByIdController);
+router.delete('/s/:id', authGuard, ClassRoomController.deleteClassRoomController);
+router.patch('/s/:id', authGuard, ClassRoomController.patchClassRoomController);
+router.get('/s/:id', authGuard, ClassRoomController.getClassRoomByIdController);
+router.get('/', authGuard, ClassRoomController.getClassRoomController);
+router.post('/', authGuard, ClassRoomController.postClassRoomController);
 
 
 

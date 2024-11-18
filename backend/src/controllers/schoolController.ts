@@ -5,12 +5,23 @@ import { Request, Response } from "express";
 
 export class SchoolController {
 
+    static async getSchoolsByNameController(req: Request, res: Response) {
+        const { name } = req.query;
+        const schools = await service.getShcoolsByNameService(String(name));
+
+        if (schools.length > 0) {
+            res.status(200).json(schools);
+        } else {
+            res.status(404).json({ message: "Registro não encontrado!" });
+        }
+    }
+
     static async getSchoolController(req: Request, res: Response) {
         const school = await service.getSchoolService();
         if (school !== null) {
             res.status(200).json(school);
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
 
     }
@@ -21,7 +32,7 @@ export class SchoolController {
         if (school !== null) {
             res.status(200).json(school);
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
     }
 
@@ -53,7 +64,7 @@ export class SchoolController {
         if (schoolUpdated !== null) {
             res.status(200).json(schoolUpdated);
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
 
     }
@@ -65,7 +76,7 @@ export class SchoolController {
         if (schoolDelete !== null) {
             res.status(200).json({ message: "Deletado com sucesso!" });
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
     }
 

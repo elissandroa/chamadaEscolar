@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Address from '../models/address';
 import School from '../models/school';
 import SchoolsAddresses from '../models/schoolAddresses';
@@ -5,6 +6,17 @@ import { schoolType } from '../types/school';
 
 
 export class SchoolRepository {
+
+    static async getSchoolsByNameRepository(name: string) {
+        const schools = await School.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        })
+        return schools;
+    }
 
     static async getSchoolRepository() {
         const schools = await School.findAll();

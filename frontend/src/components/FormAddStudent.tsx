@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react';
-import './addforms.css';
+import './addAndEditForms.css';
 import { FormButton } from './FormButton';
 import api from '../utils/api';
 

@@ -9,39 +9,35 @@ type Props = {
     id: number;
 }
 
-type teacherType = {
+type classroomType = {
     name: string;
     phone: string;
     id: number;
 }
 
 
-export const FormEditTeacher = ({ formEditVisible, setFormEditVisible, id }: Props) => {
-    const [teacher, setTeacher] = useState<teacherType>({});
+export const FormEditClassRoom = ({ formEditVisible, setFormEditVisible, id }: Props) => {
+    const [classroom, setClassRoom] = useState<classroomType>({});
     const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
 
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        api.get(`/teachers/s/${id}`, {
+        api.get(`/classrooms/s/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response) => {
-            setTeacher(response.data)
+            setClassRoom(response.data)
         }).catch((err) => console.log(err));
     }, [])
 
     const handleSubmit = async (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
-        const updatedTeacher = {
-            name,
-            phone,
-            Addresses: [],
-            Disciplines: []
+        const updatedClassRoom = {
+            name
         }
-        api.patch(`/teachers/s/${id}`, updatedTeacher, {
+        api.patch(`/classrooms/s/${id}`, updatedClassRoom, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -50,9 +46,8 @@ export const FormEditTeacher = ({ formEditVisible, setFormEditVisible, id }: Pro
     }
 
     useEffect(() => {
-        setName(teacher.name);
-        setPhone(teacher.phone);
-    }, [teacher])
+        setName(classroom.name);
+    }, [classroom])
 
     return (
         <div className="modal">
@@ -63,18 +58,9 @@ export const FormEditTeacher = ({ formEditVisible, setFormEditVisible, id }: Pro
                         <label htmlFor="name">Nome:</label>
                         <input
                             name='name'
-                            placeholder='Digite o nome do aluno'
+                            placeholder='Digite o nome da turma'
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-control">
-                        <label htmlFor="phone">Telefone:</label>
-                        <input
-                            name='phone'
-                            placeholder='Digite o telefone do aluno'
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
                         />
                     </div>
                     <div className='form-actions'>

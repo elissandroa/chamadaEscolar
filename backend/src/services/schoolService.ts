@@ -3,6 +3,11 @@ import { schoolType } from "../types/school";
 
 export class SchoolService {
 
+    static async getShcoolsByNameService(name:string){
+        const schools = await repository.getSchoolsByNameRepository(name);
+        return schools;
+    }
+
     static async getSchoolService(){
         const school = await repository.getSchoolRepository();
         return school;
