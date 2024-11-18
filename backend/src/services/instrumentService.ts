@@ -3,6 +3,11 @@ import { instrumentType } from "../types/instrument";
 
 export class InstrumentService {
 
+    static async getInstrumentsByNameService(name:string){
+        const instruments = await repository.getInstrumentByNameRepository(name);
+        return instruments;
+    }
+
     static async getInstrumentService(){
         const instruments = await repository.getInstrumentRepository();
         return instruments;

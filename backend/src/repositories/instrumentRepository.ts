@@ -1,8 +1,20 @@
+import { Op } from 'sequelize';
 import Instrument from '../models/instrument';
 import { instrumentType } from '../types/instrument';
 
 
 export class InstrumentRepository {
+
+    static async getInstrumentByNameRepository(name: string) {
+        const instruments = await Instrument.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        })
+        return instruments;
+    }
 
     static async getInstrumentRepository() {
         const instruments = await Instrument.findAll();

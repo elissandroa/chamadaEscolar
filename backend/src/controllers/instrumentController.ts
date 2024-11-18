@@ -5,6 +5,17 @@ import { Request, Response } from "express";
 
 export class InstrumentController {
 
+    static async getInstrumentsByNameController(req: Request, res: Response) {
+        const { name } = req.query;
+        const instruments = await service.getInstrumentsByNameService(String(name));
+        if (instruments.length > 0) {
+            res.status(200).json(instruments);
+        } else {
+            res.status(404).json({ message: "Registro não econtrado!" });
+            return;
+        }
+    }
+
     static async getInstrumentController(req: Request, res: Response) {
         const instruments = await service.getInstrumentService();
         if (instruments !== null) {
