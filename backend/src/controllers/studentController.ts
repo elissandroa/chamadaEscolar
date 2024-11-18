@@ -1,3 +1,4 @@
+import { parseArgs } from "util";
 import { StudentService as service } from "../services/studentService";
 import { studentType } from "../types/student";
 import { Request, Response } from "express";
@@ -11,8 +12,18 @@ export class StudentController {
             res.status(200).json(student);
         } else {
             res.status(404).json({ message: "Registro não encontrada!" });
+            return;
         }
+    }
 
+    static async getStudentByNameController(req: Request, res: Response) {
+        const { name } = req.query;
+        const students = await service.getStudentsByNameService(String(name));
+        if (students.length > 0) {
+            res.status(200).json(students);
+        } else {
+            res.status(404).json({ message: "Registro não encontrada!" });
+        }
     }
 
     static async getStudentByIdController(req: Request, res: Response) {
@@ -22,6 +33,7 @@ export class StudentController {
             res.status(200).json(student);
         } else {
             res.status(404).json({ message: "Registro não encontrada!" });
+            return;
         }
     }
 
@@ -58,6 +70,7 @@ export class StudentController {
             res.status(200).json(studentUpdated);
         } else {
             res.status(404).json({ message: "Registro não encontrada!" });
+            return;
         }
 
     }
@@ -70,6 +83,7 @@ export class StudentController {
             res.status(200).json({ message: "Deletado com sucesso!" });
         } else {
             res.status(404).json({ message: "Registro não encontrada!" });
+            return;
         }
     }
 

@@ -1,29 +1,26 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { FormAddStudent } from './components/FormAddStudent.tsx'
 import { Login } from './components/Login'
-import { Home } from './pages/Home'
-import { Students } from './pages/Students'
-import { Instruments } from './pages/Instruments.tsx'
-import { Teachers } from './pages/Teachers.tsx'
-import { Disciplines } from './pages/Disciplines.tsx'
-import { SchoolTests } from './pages/SchoolTests.tsx'
-import { ClassRooms } from './pages/ClassRooms.tsx'
-import { SchoolRollCalls } from './pages/SchoolRollCalls.tsx'
 import { Addresses } from './pages/Addresses.tsx'
-import { Registrations } from './pages/Registrations.tsx'
-import { Schools } from './pages/Schools.tsx'
+import { ClassRooms } from './pages/ClassRooms.tsx'
+import { Disciplines } from './pages/Disciplines.tsx'
 import { Graduations } from './pages/Graduations.tsx'
+import { Home } from './pages/Home'
+import { Instruments } from './pages/Instruments.tsx'
+import { Registrations } from './pages/Registrations.tsx'
+import { SchoolRollCalls } from './pages/SchoolRollCalls.tsx'
+import { Schools } from './pages/Schools.tsx'
+import { SchoolTests } from './pages/SchoolTests.tsx'
+import { Students } from './pages/Students'
+import { Teachers } from './pages/Teachers.tsx'
 import { Tutors } from './pages/Tutors.tsx'
 import { Users } from './pages/Users.tsx'
-import { FormAddStudent } from './components/FormAddStudent.tsx'
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
-
-        
-        <Route path='/addstudents' element={<FormAddStudent />} />
         <Route path='/users' element={<Users />} />
         <Route path='/students' element={<Students />} />
         <Route path='/tutors' element={<Tutors />} />

@@ -4,11 +4,13 @@ type Props = {
     name: string;
     placeholder: string;
     labelTitle: string;
+
 }
 
-export const Input = ({ name, placeholder, labelTitle }: Props) => {
 
+export const Input = ({ name, placeholder, labelTitle }: Props) => {
     const [nameInput, setNameInput] = useState("");
+
 
     return (
         <div className="form-control">

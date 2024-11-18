@@ -1,16 +1,14 @@
-import { FormEvent, useEffect, useState } from 'react';
-import axios from 'axios';
+import { FormEvent, useState } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
-
+import api from '../utils/api';
 
 export const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({});
+  const [, setUser] = useState({});
   const [error, setError] = useState("");
-  const BASE_URL = "http://localhost:5000/users/login"
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -21,11 +19,11 @@ export const Login = () => {
       password
     }
 
-    await axios.post(BASE_URL, login)
+     await api.post("/users/login",login)
       .then((response) => {
         setUser(response.data);
-        const token = user.token;
-        localStorage.setItem('token', token);
+        const token = response.data.token;
+        localStorage.setItem('token', token)
         navigate('/home')
       })
       .catch(() => setError("Usuário ou senha inválidos"));

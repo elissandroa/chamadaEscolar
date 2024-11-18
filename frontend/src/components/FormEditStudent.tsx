@@ -4,57 +4,87 @@ import { FormButton } from './FormButton';
 import api from '../utils/api';
 
 type Props = {
-    formAddVisible: boolean;
-    setFormAddVisible: (formAddVisible: boolean) => any;
+    formEditVisible: boolean;
+    setFormEditVisible: (formAddVisible: boolean) => any;
+    id: number;
 }
 
-export const FormAddStudent = ({ formAddVisible, setFormAddVisible }: Props) => {
+type studentType = {
+    name: string;
+    phone: string;
+    id: number;
+    graduationId: number;
+    instrumentId: number;
+}
 
+type graduationType = {
+    id: number;
+    name: string;
+}
+
+type instrumentType = {
+    id: number;
+    name: string;
+}
+
+export const FormEditStudent = ({ formEditVisible, setFormEditVisible, id }: Props) => {
+    const [student, setStudent] = useState<studentType>({});
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
-    const [instruments, setInstruments] = useState([]);
-    const [graduations, setGraduations] = useState([]);
-    const [instrumentId, setInstrumentId] = useState<number>();
-    const [graduationId, setGraduationId] = useState<number>();
+    const [instruments, setInstruments] = useState<instrumentType[]>([]);
+    const [graduations, setGraduations] = useState<graduationType[]>([]);
+    const [instrumentId, setInstrumentId] = useState(0);
+    const [graduationId, setGraduationId] = useState(0);
 
     const token = localStorage.getItem('token');
 
     useEffect(() => {
+        api.get(`/students/s/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response) => {
+            setStudent(response.data)
+            setInstrumentId(response.data.Instrument.id)
+            setGraduationId(response.data.Graduation.id)
+        })
+            .catch((err) => console.log(err));
+
         api.get("/instruments", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        })
-            .then((response) => setInstruments(response.data))
+        }).then((response) => setInstruments(response.data))
             .catch((err) => console.log(err));
         api.get("/graduations", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        })
-            .then((response) => setGraduations(response.data))
+        }).then((response) => setGraduations(response.data))
             .catch((err) => console.log(err));
     }, [])
 
-
     const handleSubmit = async (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
-        const student = {
+        const updatedStudent = {
             name,
             phone,
             InstrumentId: instrumentId,
             GraduationId: graduationId,
             Addresses: []
         }
-
-        await api.post("/students", student, {
+        api.patch(`/students/s/${id}`, updatedStudent, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then((response) => response.data)
-            .catch((err) => console.log(err))
-        setFormAddVisible(!formAddVisible);
+        })
+        setFormEditVisible(!formEditVisible);
     }
+
+    useEffect(() => {
+        setName(student.name);
+        setPhone(student.phone);
+    }, [student])
 
     return (
         <div className="modal">
@@ -81,7 +111,7 @@ export const FormAddStudent = ({ formAddVisible, setFormAddVisible }: Props) => 
                     </div>
                     <div className="form-control">
                         <label htmlFor="instrument">Instrumento:</label>
-                        <select name="instrument" id="instrument" onChange={(e: FormEvent<HTMLElement>) => setInstrumentId(e.target.value)}>
+                        <select name="instrument" id="instrument" value={instrumentId} onChange={(e: FormEvent<HTMLElement>) => setInstrumentId(e.target.value)}>
                             <option value="" className='optionPlaceholder'>Selecione um Instrumento</option>
                             {instruments.map((instrument) => (
                                 <option value={instrument.id} key={instrument.id}>{instrument.name}</option>
@@ -90,16 +120,16 @@ export const FormAddStudent = ({ formAddVisible, setFormAddVisible }: Props) => 
                     </div>
                     <div className="form-control">
                         <label htmlFor="graduation">Graduação:</label>
-                        <select name="graduation" id="graduation" className='optionPlaceholder' onChange={(e: FormEvent<HTMLElement>) => setGraduationId(e.target.value)}>
+                        <select name="graduation" id="graduation" className='optionPlaceholder' value={graduationId} onChange={(e: FormEvent<HTMLElement>) => setGraduationId(e.target.value)}>
                             <option value="">Selecione a graduação</option>
                             {graduations.map((graduation) => (
-                                <option value={graduation.id} key={graduation.id}>{graduation.id}-{graduation.name}</option>
+                                <option value={graduation.id} key={graduation.id}>{graduation.name}</option>
                             ))}
                         </select>
                     </div>
                     <div className='form-actions'>
-                        <FormButton type='submit' value='Cadastrar' inputClass='success' />
-                        <FormButton type='reset' value='Cancelar' inputClass='cancel' onclick={() => setFormAddVisible(!formAddVisible)} />
+                        <FormButton type='submit' value='Atualizar' inputClass='success' />
+                        <FormButton type='reset' value='Cancelar' inputClass='cancel' onclick={() => setFormEditVisible(!formEditVisible)} />
                     </div>
                 </form>
             </div>

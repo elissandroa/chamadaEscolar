@@ -5,6 +5,8 @@ import Student from '../models/student';
 import { studentType } from '../types/student';
 import StudentsAddresses from '../models/studentsAddresses';
 import Graduation from '../models/graduation';
+import sequelize from '../db/conn';
+import { Op } from 'sequelize';
 
 
 export class StudentRepository {
@@ -14,8 +16,19 @@ export class StudentRepository {
         return students;
     }
 
+    static async getSudentsByNameRepository(name: string) {
+        const students = await Student.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        });
+        return students;
+    }
+
     static async getStudentByIdRepository(id: number) {
-        const student = await Student.findOne({ where: { id: id }, include: [Instrument, Graduation]  });
+        const student = await Student.findOne({ where: { id: id }, include: [Instrument, Graduation] });
         return student;
     }
 
@@ -55,7 +68,7 @@ export class StudentRepository {
 
         const addressToDelete = listAddressesDb.filter((item) => !listAddressesReq.includes(item));
         const addressToAdd = listAddressesReq.filter((item) => !listAddressesDb.includes(item));
-        console.log("AddressReq",listAddressesReq);
+        console.log("AddressReq", listAddressesReq);
         console.log("AddressDb", listAddressesDb);
         console.log("AddressToAdd", addressToAdd);
         console.log("AddressToDelete", addressToDelete);

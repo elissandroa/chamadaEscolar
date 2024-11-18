@@ -8,6 +8,11 @@ export class StudentService {
         return student;
     }
 
+    static async getStudentsByNameService(name:string){
+        const students = await repository.getSudentsByNameRepository(name);
+        return students;
+    }
+
     static async getStudentByIdService(id:number){
         const student = await repository.getStudentByIdRepository(id);
         return student;
