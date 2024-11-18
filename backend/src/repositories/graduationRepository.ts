@@ -1,8 +1,20 @@
+import { Op } from 'sequelize';
 import Graduation from '../models/graduation';
 import { graduationType } from '../types/graduation';
 
 
 export class GraduationRepository {
+
+    static async getGraduationByNameRepository(name: string) {
+        const graduations = Graduation.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        })
+        return graduations;
+    }
 
     static async getGraduationRepository() {
         const graduations = await Graduation.findAll();

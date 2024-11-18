@@ -5,6 +5,12 @@ import { Request, Response } from "express";
 
 export class GraduationController {
 
+    static async getGraduationsByNameController(req: Request, res: Response) {
+        const { name } = req.query;
+        const graduations = await service.getGraduationsByName(String(name));
+        return graduations;
+    }
+
     static async getGraduationController(req: Request, res: Response) {
         const graduations = await service.getGraduationService();
         if (graduations !== null) {
