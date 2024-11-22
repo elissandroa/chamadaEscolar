@@ -9,7 +9,7 @@ export const FormAddAddress = ({ formAddressVisible, setFormAddressVisible }: Pr
       <div className="form_container">
         <h1>Endereço</h1>
         <p>Rua: José Clementino Bettega, 120</p>
-        <p>Complement: Bloco 3 Apto 124</p>
+        <p>Complement: Bloco 3 Apartamento 124</p>
         <p>Cidade: Curitiba  Estado: Paraná</p>
         <p>Cep: 81120-020</p>
         <div className="form-actions">
