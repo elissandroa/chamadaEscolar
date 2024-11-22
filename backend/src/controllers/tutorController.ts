@@ -5,12 +5,24 @@ import { Request, Response } from "express";
 
 export class TutorController {
 
+    static async getTutorsByNameController(req: Request, res: Response) {
+        const { name } = req.query;
+        const tutors = await service.getTutorsByNameService(String(name));
+
+        if (tutors.length > 0) {
+            res.status(200).json(tutors);
+        } else {
+            res.status(404).json({ message: "Registro não encontrado!" });
+        }
+
+    }
+
     static async getTutorController(req: Request, res: Response) {
         const tutor = await service.getTutorService();
         if (tutor !== null) {
             res.status(200).json(tutor);
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
 
     }
@@ -21,7 +33,7 @@ export class TutorController {
         if (tutor !== null) {
             res.status(200).json(tutor);
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
     }
 
@@ -53,7 +65,7 @@ export class TutorController {
         if (tutorUpdated !== null) {
             res.status(200).json(tutorUpdated);
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
 
     }
@@ -65,7 +77,7 @@ export class TutorController {
         if (tutorDelete !== null) {
             res.status(200).json({ message: "Deletado com sucesso!" });
         } else {
-            res.status(404).json({ message: "Registro não encontrada!" });
+            res.status(404).json({ message: "Registro não encontrado!" });
         }
     }
 

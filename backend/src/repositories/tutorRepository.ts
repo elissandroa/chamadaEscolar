@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Address from '../models/address';
 import Tutor from '../models/tutor';
 import TutorsAddresses from '../models/tutorsAddresses';
@@ -5,6 +6,17 @@ import { tutorType } from '../types/tutor';
 
 
 export class TutorRepository {
+
+    static async getTutorsByNameRepository(name: string) {
+        const tutors = await Tutor.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        })
+        return tutors;
+    }
 
     static async getTutorRepository() {
         const tutors = await Tutor.findAll();
@@ -52,7 +64,7 @@ export class TutorRepository {
 
         const addressToDelete = listAddressesDb.filter((item) => !listAddressesReq.includes(item));
         const addressToAdd = listAddressesReq.filter((item) => !listAddressesDb.includes(item));
-        console.log("AddressReq",listAddressesReq);
+        console.log("AddressReq", listAddressesReq);
         console.log("AddressDb", listAddressesDb);
         console.log("AddressToAdd", addressToAdd);
         console.log("AddressToDelete", addressToDelete);
@@ -71,6 +83,17 @@ export class TutorRepository {
                     await TutorsAddresses.destroy({ where: { AddressId: addressToDelete[i], TutorId: id } })
                 }
             }
+
+            if (tutor.Addresses.length == addressesDb.length) {
+                for (let i = 0; i < addressToDelete.length; i++) {
+                    await TutorsAddresses.destroy({ where: { AddressId: addressToDelete[i], TutorId: id } })
+                }
+                for (let i = 0; i < addressToAdd.length; i++) {
+                    const address = await Address.findByPk(addressToAdd[i]);
+                    await tutorFinded.addAddress(address);
+                }
+            }
+
         }
 
 

@@ -1,0 +1,26 @@
+.page_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .6);
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_container {
+  border: .5rem solid #FFF;
+  width: 90%;
+  background-color: white;
+}
+
+.form_container h1 {
+  color: blue;
+}
+
+.form_container p {
+  color: black;
+}

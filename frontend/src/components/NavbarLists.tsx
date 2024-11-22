@@ -1,4 +1,4 @@
-import {  IoAddCircleOutline, IoArrowBackCircleSharp } from 'react-icons/io5';
+import { IoAddCircleOutline, IoArrowBackCircleSharp } from 'react-icons/io5';
 import { SearchBar } from './SearchBar';
 import { useNavigate } from 'react-router-dom';
 

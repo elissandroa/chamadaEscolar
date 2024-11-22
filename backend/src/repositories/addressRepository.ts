@@ -1,4 +1,8 @@
 import Address from '../models/address';
+import School from '../models/school';
+import Student from '../models/student';
+import Teacher from '../models/teacher';
+import Tutor from '../models/tutor';
 import { addressType } from '../types/address';
 
 
@@ -10,7 +14,7 @@ export class AddressRepository {
     }
 
     static async getAddressByIdRepository(id: number) {
-        const address = await Address.findOne({ where: { id: id } });
+        const address = await Address.findOne({ where: { id: id }, include: [Student, Tutor, School, Teacher ] });
         return address;
     }
 
