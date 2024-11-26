@@ -9,7 +9,7 @@ import { addressType } from '../types/address';
 export class AddressRepository {
 
     static async getAddressRepository() {
-        const addresss = await Address.findAll();
+        const addresss = await Address.findAll({include:[Student, School, Tutor, Teacher]});
         return addresss;
     }
 

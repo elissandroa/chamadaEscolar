@@ -24,7 +24,7 @@ export class TutorRepository {
     }
 
     static async getTutorByIdRepository(id: number) {
-        const tutor = await Tutor.findOne({ where: { id: id } });
+        const tutor = await Tutor.findOne({ where: { id: id }, include: Address });
         return tutor;
     }
 

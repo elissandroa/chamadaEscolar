@@ -5,6 +5,10 @@ import { Request, Response } from "express";
 
 export class AddressController {
 
+    static async getAddressByStreetController(req:Request, res:Response){
+        
+    }
+
     static async getAddressController(req: Request, res: Response) {
         const addresss = await service.getAddressService();
         if (addresss !== null) {

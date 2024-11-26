@@ -8,7 +8,7 @@ import { GrView } from 'react-icons/gr';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { FormRemoveItem } from '../components/FormRemoveItem';
 import { FormViewTutor } from '../components/FormViewTutor';
-import { FormAddAddress } from '../components/FormAddAddress';
+import { FormAddTutorAddress } from '../components/FormAddTutorAddress';
 
 export const Tutors = () => {
   const [formAddVisible, setFormAddVisible] = useState<boolean>(false);
@@ -75,7 +75,7 @@ export const Tutors = () => {
           {formDeleteVisible && <FormRemoveItem formDeleteVisible={formDeleteVisible} setFormDeleteVisible={setFormDeleteVisible} id={id} item={'tutors'} title={'Tutor'} />}
           {formEditVisible && <FormEditTutor formEditVisible={formEditVisible} setFormEditVisible={setFormEditVisible} id={id} />}
           {formViewVisible && <FormViewTutor formViewVisible={formViewVisible} setFormViewVisible={setFormViewVisible} id={id} />}
-          {formAddressVisible && <FormAddAddress formAddressVisible={formAddressVisible} setFormAddressVisible={setFormAddressVisible} id={id} />}
+          {formAddressVisible && <FormAddTutorAddress formAddressVisible={formAddressVisible} setFormAddressVisible={setFormAddressVisible} id={id} />}
           {listTutors.length > 0 ? listTutors.map((tutor) => (
             <li key={tutor.id}>{tutor.name}
               <span>

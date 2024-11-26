@@ -1,7 +1,7 @@
 .form-container-view {
     position: absolute;
-    top: 200px;
-    left: 0;
+    top: 10px;
+    left: -22px;
     color: #FFF;
     margin: .32rem .44rem;
     border: .5rem solid #FFF;
@@ -21,7 +21,14 @@
     margin: 0 auto;
     padding: 1.7rem;
     text-transform: capitalize;
-    color: yellow;
+    color: #FFF;
+    font-weight: bold;
+    width: 100%;
+}
+
+.form-container-view p {
+    color: #FFF;
+    font-weight: bold;
 }
 
 .addressTitle {
@@ -36,12 +43,13 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .form-container-view ul li {
     border-bottom: .1rem solid #FFF;
+    width: 100%;
 }
 
 .form-container-view ul li:nth-child(even){
@@ -68,6 +76,16 @@
     color: #FFF;
     font-weight: bold;
 
+}
+
+.addressView {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addressView li {
+    color: yellow;
 }
 
 @media only screen and (min-width: 576px) {
@@ -102,7 +120,7 @@
 
   @media only screen and (min-width: 1401px) {
     .form-container-view {
-        top: 200px;
-        left: 673px;
+        top: 10px;
+        left: 643px;
     }
   }

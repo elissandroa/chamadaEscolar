@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState, useSyncExternalStore } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import './addAndEditForms.css';
 import { FormButton } from './FormButton';
 import api from '../utils/api';
@@ -91,15 +91,6 @@ export const FormEditTutor = ({ formEditVisible, setFormEditVisible, id }: Props
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                         />
-                    </div>
-                    <div className="form-control">
-                        <label htmlFor="address">Endereço:</label>
-                        <select name="address" id="address" className='optionPlaceholder' value={addressId} onChange={(e: FormEvent<HTMLElement>) => setAddressId(e.target.value)}>
-                            <option value="">Selecione o endereço</option>
-                            {addresses.map((address) => (
-                                <option value={address.id} key={address.id}>{address.street}-{address.num}-{address.neighborhood}</option>
-                            ))}
-                        </select>
                     </div>
                     <div className='form-actions'>
                         <FormButton type='submit' value='Atualizar' inputClass='success' />

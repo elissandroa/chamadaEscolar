@@ -18,6 +18,7 @@ type tutorType = {
 export const FormViewTutor = ({ formViewVisible, setFormViewVisible, id }: Props) => {
   const [tutor, setTutor] = useState<tutorType>({});
   const [, setName] = useState("");
+  const [addresses, setAddresses] = useState<[]>([]);
 
   const token = localStorage.getItem('token');
 
@@ -27,7 +28,8 @@ export const FormViewTutor = ({ formViewVisible, setFormViewVisible, id }: Props
         Authorization: `Bearer ${token}`
       }
     }).then((response) => {
-      setTutor(response.data)
+      setTutor(response.data);
+      setAddresses(response.data.Addresses);
     })
       .catch((err) => console.log(err));
   }, [])
@@ -41,7 +43,19 @@ export const FormViewTutor = ({ formViewVisible, setFormViewVisible, id }: Props
     tutor && <div className="modal">
       <div className='form-container-view'>
         <h3>{tutor.name}</h3>
-        <p>Telefone: {tutor.phone}</p>
+        <strong>Telefone: {tutor.phone}</strong>
+        {addresses.length > 0 && <h4>Endereço:</h4>}
+        {
+          addresses.map((address) => (
+            <ul key={address.id} className='addressView'>
+              <li>Rua: <span>{address.street}</span>,  <span>{address.num}</span></li>
+              <li><span>Bairro: {address.neighborhood}</span><span>Cep: {address.zipcode}</span></li>
+              <li><span>Cidade: {address.city}</span><span>Estado: {address.state}</span></li>
+              <br />
+            </ul>
+          ))
+        }
+
         <div className="form-actions">
           <button onClick={() => setFormViewVisible(!formViewVisible)}>Fechar</button>
         </div>
