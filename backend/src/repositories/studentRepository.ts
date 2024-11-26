@@ -12,7 +12,7 @@ import { Op } from 'sequelize';
 export class StudentRepository {
 
     static async getStudentRepository() {
-        const students = await Student.findAll({ include: [Instrument, Graduation] });
+        const students = await Student.findAll({ include: [Instrument, Graduation, Address] });
         return students;
     }
 
@@ -28,7 +28,7 @@ export class StudentRepository {
     }
 
     static async getStudentByIdRepository(id: number) {
-        const student = await Student.findOne({ where: { id: id }, include: [Instrument, Graduation] });
+        const student = await Student.findOne({ where: { id: id }, include: [Instrument, Graduation, Address] });
         return student;
     }
 

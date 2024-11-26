@@ -35,6 +35,7 @@ export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Pro
   const [, setGraduations] = useState<graduationType[]>([]);
   const [instrumentName, setInstrumentName] = useState("");
   const [graduationName, setGraduationName] = useState("");
+  const [addresses, setAddresses] = useState([]);
 
   const token = localStorage.getItem('token');
 
@@ -47,6 +48,7 @@ export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Pro
       setStudent(response.data)
       setInstrumentName(response.data.Instrument.name)
       setGraduationName(response.data.Graduation.name)
+      setAddresses(response.data.Addresses);
     })
       .catch((err) => console.log(err));
 
@@ -80,6 +82,17 @@ export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Pro
           <li>Instrumento: {instrumentName}</li>
           <li>Telefone: {student.phone}</li>
         </ul>
+ 
+        {
+          addresses.map((address) => (
+            <ul key={address.id} className='addressView'>
+              <li>Rua: <span>{address.street}</span>,  <span>{address.num}</span></li>
+              <li><span>Bairro: {address.neighborhood}</span><span>Cep: {address.zipcode}</span></li>
+              <li><span>Cidade: {address.city}</span><span>Estado: {address.state}</span></li>
+              <br />
+            </ul>
+          ))
+        }
         <div className="form-actions">
         <button onClick={() => setFormViewVisible(!formViewVisible)}>Fechar</button>
         </div>

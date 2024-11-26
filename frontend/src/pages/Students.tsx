@@ -3,17 +3,19 @@ import { FormAddStudent } from '../components/FormAddStudent';
 import { useEffect, useState } from 'react';
 import { FormEditStudent } from '../components/FormEditStudent';
 import api from '../utils/api';
-import { FaRegEdit } from 'react-icons/fa';
+import { FaAddressCard, FaRegEdit } from 'react-icons/fa';
 import { GrView } from 'react-icons/gr';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { FormRemoveItem } from '../components/FormRemoveItem';
 import { FormViewStudent } from '../components/FormViewStudent';
+import { FormAddStudentAddress } from '../components/FormAddStudentAddress';
 
 export const Students = () => {
   const [formAddVisible, setFormAddVisible] = useState<boolean>(false);
   const [formEditVisible, setFormEditVisible] = useState<boolean>(false);
   const [formViewVisible, setFormViewVisible] = useState<boolean>(false);
   const [formDeleteVisible, setFormDeleteVisible] = useState<boolean>(false);
+  const [formAddressVisible, setFormAddressVisible] = useState<boolean>(false);
   const [students, setStudents] = useState([]);
   const [id, setId] = useState(0);
 
@@ -73,9 +75,15 @@ export const Students = () => {
           {formDeleteVisible && <FormRemoveItem formDeleteVisible={formDeleteVisible} setFormDeleteVisible={setFormDeleteVisible} id={id} item='students' title='Aluno' />}
           {formEditVisible && <FormEditStudent formEditVisible={formEditVisible} setFormEditVisible={setFormEditVisible} id={id} />}
           {formViewVisible && <FormViewStudent formViewVisible={formViewVisible} setFormViewVisible={setFormViewVisible} id={id} />}
+          {formAddressVisible && <FormAddStudentAddress formAddressVisible={formAddressVisible} setFormAddressVisible={setFormAddressVisible} id={id} />}
           {listStudents.length > 0 ? listStudents.map((student) => (
             <li key={student.id}>{student.name}
-              <span>
+                 <span>
+                <button onClick={() => {
+                  setFormAddressVisible(!formAddressVisible)
+                  setId(student.id)
+                }
+                }><FaAddressCard /></button>
                 <button onClick={() => {
                   setFormEditVisible(!formEditVisible)
                   setId(student.id);

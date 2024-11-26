@@ -19,20 +19,18 @@ export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible,
   const [state, setState] = useState<string>("");
   const [zipcode, setZipcode] = useState<string>("");
   const [tutor, setTutor] = useState<any>({});
-  const [addresses, setAddresses] = useState([]);
   
   const token = localStorage.getItem('token');
 
   let AddressId: number;
 
   useEffect(() => {
-    api.get(`/Tutors/s/${id}`, {
+    api.get(`/tutors/s/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     }).then((response) => {
       setTutor(response.data);
-      setAddresses(response.data.Addresses);
     })
       .catch((err) => console.log(err));
   }, [])

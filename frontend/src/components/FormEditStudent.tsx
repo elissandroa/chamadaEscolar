@@ -35,6 +35,7 @@ export const FormEditStudent = ({ formEditVisible, setFormEditVisible, id }: Pro
     const [graduations, setGraduations] = useState<graduationType[]>([]);
     const [instrumentId, setInstrumentId] = useState(0);
     const [graduationId, setGraduationId] = useState(0);
+    const [addresses, setAddresses] = useState([]);
 
     const token = localStorage.getItem('token');
 
@@ -47,6 +48,7 @@ export const FormEditStudent = ({ formEditVisible, setFormEditVisible, id }: Pro
             setStudent(response.data)
             setInstrumentId(response.data.Instrument.id)
             setGraduationId(response.data.Graduation.id)
+            setAddresses(response.data.Addresses)
         })
             .catch((err) => console.log(err));
 
@@ -71,7 +73,7 @@ export const FormEditStudent = ({ formEditVisible, setFormEditVisible, id }: Pro
             phone,
             InstrumentId: instrumentId,
             GraduationId: graduationId,
-            Addresses: []
+            Addresses: addresses
         }
         api.patch(`/students/s/${id}`, updatedStudent, {
             headers: {
