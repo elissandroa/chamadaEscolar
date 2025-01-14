@@ -42,6 +42,7 @@ export class StudentController {
             name: req.body.name,
             InstrumentId: req.body.InstrumentId,
             GraduationId: req.body.GraduationId,
+            TutorId: req.body.TutorId,
             phone: req.body.phone,
             Addresses: req.body.Addresses
         }

@@ -2,15 +2,17 @@ import { FormEvent, useEffect, useState } from 'react';
 import './addAndEditForms.css';
 import { FormButton } from './FormButton';
 import api from '../utils/api';
+import { addressType } from '../Types/Address';
 
 
 type Props = {
-  formAddressVisible: boolean;
-  setFormAddressVisible: (formAddressVisible: boolean) => any;
+  formEditAddressItemVisible: boolean;
+  setFormEditAddressItemVisible: (formEditAddressItemVisible: boolean) => any;
   id: number;
 }
 
-export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible, id }: Props) => {
+
+export const FormEditTutorAddress = ({ formEditAddressItemVisible, setFormEditAddressItemVisible, id }: Props) => {
 
   const [street, setStreet] = useState<string>("");
   const [num, setNum] = useState<string>("");
@@ -18,28 +20,38 @@ export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible,
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [zipcode, setZipcode] = useState<string>("");
-  const [tutor, setTutor] = useState<any>({});
-  
+  const [address, setAddress] = useState<addressType>({});
+
   const token = localStorage.getItem('token');
 
-  let AddressId: number;
 
   useEffect(() => {
-    api.get(`/tutors/s/${id}`, {
+    api.get(`/addresses/s/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     }).then((response) => {
-      setTutor(response.data);
+      setAddress(response.data);
     })
       .catch((err) => console.log(err));
   }, [])
 
 
 
+  useEffect(() => {
+    setStreet(address.street);
+    setNum(address.num);
+    setNeighborhood(address.neighborhood);
+    setCity(address.city);
+    setState(address.state);
+    setZipcode(address.zipcode)
+  }, [address])
+
+
+
   const handleSubmit = async (e: FormEvent<HTMLElement>) => {
     e.preventDefault();
-    const address = {
+    const updatedAddress = {
       street,
       num,
       neighborhood,
@@ -48,29 +60,13 @@ export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible,
       zipcode
     }
 
-
-    await api.post("/addresses", address, {
+    await api.patch(`/addresses/s/${id}`, updatedAddress, {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    })
-      .then((response) => { AddressId = response.data.id })
-      .catch((err) => console.log(err))
-    setFormAddressVisible(!formAddressVisible);
-    if(tutor.Addresses.length == 0) {
-      tutor.Addresses = [{
-        TutorId: id,
-        AddressId: AddressId
-      }]
-    } else {
-      tutor.Addresses.push({TutorId: id, AddressId: AddressId})
-    }
-    await api.patch(`/tutors/s/${id}`, tutor, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-
+    }).then((response) => response.data)
+    .catch((err) => console.log(err));
+    setFormEditAddressItemVisible(!formEditAddressItemVisible)
   }
 
 
@@ -79,8 +75,8 @@ export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible,
   return (
     <div className="modal">
       <div className='form-container'>
-        <h2>Adicionar endereços</h2>
-        <form onSubmit={handleSubmit}>
+        <h2>Editando endereços</h2>
+        <form>
           <div className="form-control">
             <label htmlFor="street">Rua:</label>
             <input
@@ -136,8 +132,8 @@ export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible,
             />
           </div>
           <div className='form-actions'>
-            <FormButton type='submit' value='Cadastrar' inputClass='success' />
-            <FormButton type='reset' value='Cancelar' inputClass='cancel' onclick={() => setFormAddressVisible(!formAddressVisible)} />
+            <FormButton type='submit' value='Atualizar' inputClass='success' onclick={(e: FormEvent<HTMLElement>) => handleSubmit(e)} />
+            <FormButton type='reset' value='Cancelar' inputClass='cancel' onclick={() => setFormEditAddressItemVisible(!formEditAddressItemVisible)} />
           </div>
         </form>
       </div>

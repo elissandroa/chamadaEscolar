@@ -7,6 +7,7 @@ import StudentsAddresses from '../models/studentsAddresses';
 import Graduation from '../models/graduation';
 import sequelize from '../db/conn';
 import { Op } from 'sequelize';
+import Tutor from '../models/tutor';
 
 
 export class StudentRepository {
@@ -28,7 +29,7 @@ export class StudentRepository {
     }
 
     static async getStudentByIdRepository(id: number) {
-        const student = await Student.findOne({ where: { id: id }, include: [Instrument, Graduation, Address] });
+        const student = await Student.findOne({ where: { id: id }, include: [Instrument, Graduation, Address, Tutor] });
         return student;
     }
 
@@ -44,6 +45,9 @@ export class StudentRepository {
             const address = await Address.findByPk(listAddresses[i].AddressId)
             await newStudent.addAddress(address);
         }
+
+        const tutor = await Tutor.findByPk(student.TutorId);
+        await newStudent.addTutors(tutor);
 
         return newStudent;
     }

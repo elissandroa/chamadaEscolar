@@ -3,12 +3,14 @@ import { FormAddTutor } from '../components/FormAddTutor';
 import { useEffect, useState } from 'react';
 import { FormEditTutor } from '../components/FormEditTutor';
 import api from '../utils/api';
-import { FaAddressCard, FaRegEdit } from 'react-icons/fa';
+import { FaAddressCard, FaEdit, FaRegEdit } from 'react-icons/fa';
 import { GrView } from 'react-icons/gr';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { FormRemoveItem } from '../components/FormRemoveItem';
 import { FormViewTutor } from '../components/FormViewTutor';
 import { FormAddTutorAddress } from '../components/FormAddTutorAddress';
+import { FormListAddress } from '../components/formListAddress';
+import { tutorType } from '../Types/Tutor';
 
 export const Tutors = () => {
   const [formAddVisible, setFormAddVisible] = useState<boolean>(false);
@@ -16,7 +18,8 @@ export const Tutors = () => {
   const [formViewVisible, setFormViewVisible] = useState<boolean>(false);
   const [formDeleteVisible, setFormDeleteVisible] = useState<boolean>(false);
   const [formAddressVisible, setFormAddressVisible] = useState<boolean>(false);
-  const [tutors, setTutors] = useState([]);
+  const [formEditAddressVisible, setFormEditAddressVisible] = useState<boolean>(false);
+  const [tutors, setTutors] = useState<tutorType[]>([]);
   const [id, setId] = useState(0);
 
   const token = localStorage.getItem('token');
@@ -31,10 +34,6 @@ export const Tutors = () => {
   }
 
 
-  type tutorType = {
-    id: number;
-    name: string;
-  }
 
 
   const [query, setQuery] = useState("");
@@ -76,23 +75,29 @@ export const Tutors = () => {
           {formEditVisible && <FormEditTutor formEditVisible={formEditVisible} setFormEditVisible={setFormEditVisible} id={id} />}
           {formViewVisible && <FormViewTutor formViewVisible={formViewVisible} setFormViewVisible={setFormViewVisible} id={id} />}
           {formAddressVisible && <FormAddTutorAddress formAddressVisible={formAddressVisible} setFormAddressVisible={setFormAddressVisible} id={id} />}
+          {formEditAddressVisible && <FormListAddress formEditAddressVisible={formEditAddressVisible} setFormEditAddressVisible={setFormEditAddressVisible} id={id} entity='tutors' />}
           {listTutors.length > 0 ? listTutors.map((tutor) => (
             <li key={tutor.id}>{tutor.name}
               <span>
-                <button onClick={() => {
+              <button title="Editar Endereço" onClick={() => {
+                  setFormEditAddressVisible(!formEditAddressVisible)
+                  setId(tutor.id)
+                }
+                }><FaEdit /></button>
+                <button title="Adicionar Endereço" onClick={() => {
                   setFormAddressVisible(!formAddressVisible)
                   setId(tutor.id)
                 }
                 }><FaAddressCard /></button>
-                <button onClick={() => {
+                <button title='Editar Tutor' onClick={() => {
                   setFormEditVisible(!formEditVisible)
                   setId(tutor.id);
                 }}><FaRegEdit /></button>
-                <button onClick={() => {
+                <button title='Vizualizar Tutor' onClick={() => {
                   setFormViewVisible(!formViewVisible);
                   setId(tutor.id);
                 }}><GrView /></button>
-                <button onClick={() => {
+                <button title='Remover Tutor' onClick={() => {
                   setId(tutor.id);
                   removeTutor();
                 }}><RiDeleteBin5Line /></button>

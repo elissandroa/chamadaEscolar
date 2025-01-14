@@ -3,12 +3,16 @@ import { FormAddStudent } from '../components/FormAddStudent';
 import { useEffect, useState } from 'react';
 import { FormEditStudent } from '../components/FormEditStudent';
 import api from '../utils/api';
-import { FaAddressCard, FaRegEdit } from 'react-icons/fa';
+import { FaAddressCard, FaEdit, FaRegEdit } from 'react-icons/fa';
 import { GrView } from 'react-icons/gr';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { FormRemoveItem } from '../components/FormRemoveItem';
 import { FormViewStudent } from '../components/FormViewStudent';
 import { FormAddStudentAddress } from '../components/FormAddStudentAddress';
+import { FormListAddress } from '../components/formListAddress';
+import { IoAddCircleOutline, IoPeopleSharp } from 'react-icons/io5';
+import { FormListTutors } from '../components/formListTutors';
+import { FormAddStudentTutor } from '../components/FormAddStudentTutor';
 
 export const Students = () => {
   const [formAddVisible, setFormAddVisible] = useState<boolean>(false);
@@ -16,6 +20,9 @@ export const Students = () => {
   const [formViewVisible, setFormViewVisible] = useState<boolean>(false);
   const [formDeleteVisible, setFormDeleteVisible] = useState<boolean>(false);
   const [formAddressVisible, setFormAddressVisible] = useState<boolean>(false);
+  const [formEditAddressVisible, setFormEditAddressVisible] = useState<boolean>(false);
+  const [formEditTutorsVisible, setFormEditTutorsVisible] = useState<boolean>(false);
+  const [formAddTutorVisible, setFormAddTutorVisible] = useState<boolean>(false);
   const [students, setStudents] = useState([]);
   const [id, setId] = useState(0);
 
@@ -76,23 +83,42 @@ export const Students = () => {
           {formEditVisible && <FormEditStudent formEditVisible={formEditVisible} setFormEditVisible={setFormEditVisible} id={id} />}
           {formViewVisible && <FormViewStudent formViewVisible={formViewVisible} setFormViewVisible={setFormViewVisible} id={id} />}
           {formAddressVisible && <FormAddStudentAddress formAddressVisible={formAddressVisible} setFormAddressVisible={setFormAddressVisible} id={id} />}
+          {formAddTutorVisible && <FormAddStudentTutor formAddTutorVisible={formAddTutorVisible} setFormAddTutorVisible={setFormAddTutorVisible} id={id} />}
+          {formEditAddressVisible && <FormListAddress formEditAddressVisible={formEditAddressVisible} setFormEditAddressVisible={setFormEditAddressVisible} id={id} entity='students' />}
+          {formEditTutorsVisible && <FormListTutors formEditTutorsVisible={formEditTutorsVisible} setFormEditTutorsVisible={setFormEditTutorsVisible} id={id} entity='students' />}
+
           {listStudents.length > 0 ? listStudents.map((student) => (
             <li key={student.id}>{student.name}
                  <span>
-                <button onClick={() => {
+                 <button title="Editar Tutores" onClick={() => {
+                  setFormEditTutorsVisible(!formEditTutorsVisible)
+                  setId(student.id)
+                }
+                }><IoPeopleSharp /></button>
+                <button title="Adicionar Tutores" onClick={() => {
+                  setFormAddTutorVisible(!formAddTutorVisible)
+                  setId(student.id)
+                }
+                }><IoAddCircleOutline /></button>
+                 <button title="Editar Endereços" onClick={() => {
+                  setFormEditAddressVisible(!formEditAddressVisible)
+                  setId(student.id)
+                }
+                }><FaEdit /></button>
+                <button title='Adicionar endereço' onClick={() => {
                   setFormAddressVisible(!formAddressVisible)
                   setId(student.id)
                 }
                 }><FaAddressCard /></button>
-                <button onClick={() => {
+                <button title='Editar Estudante' onClick={() => {
                   setFormEditVisible(!formEditVisible)
                   setId(student.id);
                 }}><FaRegEdit /></button>
-                <button onClick={() => {
+                <button title='Vizualizar Estudante' onClick={() => {
                   setFormViewVisible(!formViewVisible);
                   setId(student.id);
                 }}><GrView /></button>
-                <button onClick={() => {
+                <button title='Remover Estudante' onClick={() => {
                   setId(student.id);
                   removeStudent();
                 }}><RiDeleteBin5Line /></button>

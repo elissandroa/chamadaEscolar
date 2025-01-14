@@ -2,24 +2,22 @@ import { FormEvent, useEffect, useState } from 'react';
 import './addAndEditForms.css';
 import { FormButton } from './FormButton';
 import api from '../utils/api';
+import { tutorType } from '../Types/Tutor';
 
 type Props = {
     formEditVisible: boolean;
-    setFormEditVisible: (formAddVisible: boolean) => any;
+    setFormEditVisible: (formAddVisible: boolean) => boolean;
     id: number;
 }
 
-type tutorType = {
-    name: string;
-    phone: string;
-}
+
 
 
 export const FormEditTutor = ({ formEditVisible, setFormEditVisible, id }: Props) => {
     const [tutor, setTutor] = useState<tutorType>({});
     const [name, setName] = useState<string>("");
     const [phone, setPhone] = useState<string>("");
-    const [addresses, setAddresses] = useState<[]>([]);
+    const [addresses, setAddresses] = useState([]);
     const [addressId, setAddressId] = useState<number>(0);
 
     const token = localStorage.getItem('token');
@@ -30,36 +28,27 @@ export const FormEditTutor = ({ formEditVisible, setFormEditVisible, id }: Props
                 Authorization: `Bearer ${token}`
             }
         }).then((response) => {
-            setTutor(response.data)
+            setTutor(response.data);
+            setAddresses(response.data.Addresses);
         }).catch((err) => console.log(err));
     }, [])
 
-    useEffect(() => {
-        api.get(`/addresses`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response) => setAddresses(response.data))
-            .catch((err) => console.log(err));
-    }, [tutor])
-
+    
     const handleSubmit = async (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
         const updatedTutor = {
             name,
             phone,
-            Addresses: [
-                {
-                    "TutorId": id,
-                    "AddressId": addressId
-                }
-            ]
+            Addresses: addresses
         }
+
+        console.log(updatedTutor);
         await api.patch(`/tutors/s/${id}`, updatedTutor, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        })
+        }).then((response) => response.data)
+        .catch((err) => console.log(err));
         setFormEditVisible(!formEditVisible);
     }
 

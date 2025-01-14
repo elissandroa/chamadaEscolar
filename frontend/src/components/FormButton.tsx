@@ -1,10 +1,11 @@
+import { FormEvent } from 'react';
 import './formButton.css';
 
 type Props = {
     type: string;
     value: string;
     inputClass?: string;
-    onclick?: () => any;
+    onclick?: () => any | FormEvent<HTMLElement>;
 }
 
 

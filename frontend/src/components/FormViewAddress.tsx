@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './formView.css';
 
 import api from '../utils/api';
+import { addressType } from '../Types/Address';
 
 type Props = {
   formViewVisible: boolean;
@@ -9,11 +10,6 @@ type Props = {
   id: number;
 }
 
-type addressType = {
-  [x: string]: any;
-  street: string;
-  id: number;
-}
 
 export const FormViewAddress = ({ formViewVisible, setFormViewVisible, id }: Props) => {
   const [address, setAddress] = useState<addressType>({});
@@ -36,7 +32,7 @@ export const FormViewAddress = ({ formViewVisible, setFormViewVisible, id }: Pro
     setStreet(address.street);
   }, [address])
 
-
+  console.log(address)
   return (
     address && <div className="modal">
       <div className='form-container-view'>

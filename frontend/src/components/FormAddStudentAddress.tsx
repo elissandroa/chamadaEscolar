@@ -10,7 +10,7 @@ type Props = {
   id: number;
 }
 
-export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible, id }: Props) => {
+export const FormAddStudentAddress = ({ formAddressVisible, setFormAddressVisible, id }: Props) => {
 
   const [street, setStreet] = useState<string>("");
   const [num, setNum] = useState<string>("");
@@ -18,19 +18,21 @@ export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible,
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [zipcode, setZipcode] = useState<string>("");
-  const [tutor, setTutor] = useState<any>({});
+  const [student, setStudent] = useState<any>({});
+  const [, setAddresses] = useState([]);
   
   const token = localStorage.getItem('token');
 
   let AddressId: number;
 
   useEffect(() => {
-    api.get(`/tutors/s/${id}`, {
+    api.get(`/students/s/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     }).then((response) => {
-      setTutor(response.data);
+      setStudent(response.data);
+      setAddresses(response.data.Addresses);
     })
       .catch((err) => console.log(err));
   }, [])
@@ -57,15 +59,15 @@ export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible,
       .then((response) => { AddressId = response.data.id })
       .catch((err) => console.log(err))
     setFormAddressVisible(!formAddressVisible);
-    if(tutor.Addresses.length == 0) {
-      tutor.Addresses = [{
-        TutorId: id,
+    if(student.Addresses.length == 0) {
+      student.Addresses = [{
+        StudentId: id,
         AddressId: AddressId
       }]
     } else {
-      tutor.Addresses.push({TutorId: id, AddressId: AddressId})
+      student.Addresses.push({StudentId: id, AddressId: AddressId})
     }
-    await api.patch(`/tutors/s/${id}`, tutor, {
+    await api.patch(`/students/s/${id}`, student, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -91,10 +93,10 @@ export const FormAddTutorAddress = ({ formAddressVisible, setFormAddressVisible,
             />
           </div>
           <div className="form-control">
-            <label htmlFor="num">Complemento:</label>
+            <label htmlFor="num">Número:</label>
             <input
               name='num'
-              placeholder='Ex: 154B Bloco 3 Apto 321'
+              placeholder='Digite o número Ex: 154B'
               value={num}
               onChange={(e) => setNum(e.target.value)}
             />

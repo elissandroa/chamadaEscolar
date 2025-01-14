@@ -79,7 +79,8 @@ export const FormEditStudent = ({ formEditVisible, setFormEditVisible, id }: Pro
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        })
+        }).then((response) => response.data)
+        .catch((err) => console.log(err));
         setFormEditVisible(!formEditVisible);
     }
 

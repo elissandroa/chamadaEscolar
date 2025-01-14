@@ -1,5 +1,4 @@
 import { NavbarLists } from '../components/NavbarLists';
-import { FormAddAddress } from '../components/FormAddTutorAddress';
 import { useEffect, useState } from 'react';
 import { FormEditAddress } from '../components/FormEditAddress';
 import api from '../utils/api';
@@ -16,6 +15,9 @@ export const Addresses = () => {
   const [formDeleteVisible, setFormDeleteVisible] = useState<boolean>(false);
   const [addresses, setAddresses] = useState([]);
   const [tutors, setTutors] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [schools, setSchools] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   const [id, setId] = useState(0);
 
   const token = localStorage.getItem('token');
@@ -48,6 +50,9 @@ export const Addresses = () => {
         .then((response) => {
           setAddresses(response.data);
           setTutors(response.data.Tutors);
+          setTeachers(response.data.Teachers)
+          setSchools(response.data.Schools)
+          setStudents(response.data.Students)
         })
         .catch((err) => console.log(err.message));
     } else {
@@ -75,8 +80,7 @@ export const Addresses = () => {
       <NavbarLists fncForm={addAddress} query={query} setQuery={setQuery} />
       <div className="list-pages-container">
         <ul>
-          {formAddVisible && <FormAddAddress formAddVisible={formAddVisible} setFormAddVisible={setFormAddVisible} />}
-          {formDeleteVisible && <FormRemoveItem formDeleteVisible={formDeleteVisible} setFormDeleteVisible={setFormDeleteVisible} id={id} item={'addresses'} title={'Addresso'} />}
+          {formDeleteVisible && <FormRemoveItem formDeleteVisible={formDeleteVisible} setFormDeleteVisible={setFormDeleteVisible} id={id} item={'addresses'} title={'Address'} />}
           {formEditVisible && <FormEditAddress formEditVisible={formEditVisible} setFormEditVisible={setFormEditVisible} id={id} />}
           {formViewVisible && <FormViewAddress formViewVisible={formViewVisible} setFormViewVisible={setFormViewVisible} id={id} />}
           {listAddresses.length > 0 ? listAddresses.map((address) => (

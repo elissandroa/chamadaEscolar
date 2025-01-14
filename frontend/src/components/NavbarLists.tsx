@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 type Props = {
   fncForm: () => any; 
   query: string;
-  setQuery: () => any;
+  setQuery: (query:string) => any;
 }
 
 export const NavbarLists = ({fncForm , query, setQuery}:Props) => {

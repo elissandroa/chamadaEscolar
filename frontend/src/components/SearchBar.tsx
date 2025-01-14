@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { FaSearch } from "react-icons/fa"
 type Props = {
+    query: string;
     setQuery: (name: string) => any;
 }
 

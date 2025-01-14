@@ -9,12 +9,12 @@ import { addressType } from '../types/address';
 export class AddressRepository {
 
     static async getAddressRepository() {
-        const addresss = await Address.findAll({include:[Student, School, Tutor, Teacher]});
+        const addresss = await Address.findAll({ include: [Student, School, Tutor, Teacher] });
         return addresss;
     }
 
     static async getAddressByIdRepository(id: number) {
-        const address = await Address.findOne({ where: { id: id }, include: [Student, Tutor, School, Teacher ] });
+        const address = await Address.findOne({ where: { id: id }, include: [Student, Tutor, School, Teacher] });
         return address;
     }
 
@@ -46,8 +46,3 @@ export class AddressRepository {
         return address;
     }
 }
-
-
-
-
-

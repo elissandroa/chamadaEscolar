@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import './formView.css';
 
 import api from '../utils/api';
+import { tutorType } from '../Types/Tutor';
+import { addressType } from '../Types/Address';
 
 type Props = {
   formViewVisible: boolean;
@@ -9,16 +11,11 @@ type Props = {
   id: number;
 }
 
-type tutorType = {
-  [x: string]: any;
-  name: string;
-  id: number;
-}
 
 export const FormViewTutor = ({ formViewVisible, setFormViewVisible, id }: Props) => {
   const [tutor, setTutor] = useState<tutorType>({});
   const [, setName] = useState("");
-  const [addresses, setAddresses] = useState<[]>([]);
+  const [addresses, setAddresses] = useState<addressType[]>([]);
 
   const token = localStorage.getItem('token');
 

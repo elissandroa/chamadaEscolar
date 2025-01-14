@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './formView.css';
 
 import api from '../utils/api';
+import { instrumentType } from '../Types/Instrument';
 
 type Props = {
   formViewVisible: boolean;
@@ -9,11 +10,6 @@ type Props = {
   id: number;
 }
 
-type instrumentType = {
-  [x: string]: any;
-  name: string;
-  id: number;
-}
 
 export const FormViewInstrument = ({ formViewVisible, setFormViewVisible, id }: Props) => {
   const [instrument, setInstrument] = useState<instrumentType>({});

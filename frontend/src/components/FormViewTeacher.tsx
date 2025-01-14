@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './formView.css';
 
 import api from '../utils/api';
+import { teacherType } from '../Types/Teacher';
 
 type Props = {
   formViewVisible: boolean;
@@ -9,12 +10,6 @@ type Props = {
   id: number;
 }
 
-type teacherType = {
-  [x: string]: any;
-  name: string;
-  phone: string;
-  id: number;
-}
 
 export const FormViewTeacher = ({ formViewVisible, setFormViewVisible, id }: Props) => {
   const [teacher, setTeacher] = useState<teacherType>({});

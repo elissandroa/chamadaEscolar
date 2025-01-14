@@ -3,6 +3,7 @@ import Address from '../models/address';
 import Tutor from '../models/tutor';
 import TutorsAddresses from '../models/tutorsAddresses';
 import { tutorType } from '../types/tutor';
+import Student from '../models/student';
 
 
 export class TutorRepository {
@@ -24,7 +25,7 @@ export class TutorRepository {
     }
 
     static async getTutorByIdRepository(id: number) {
-        const tutor = await Tutor.findOne({ where: { id: id }, include: Address });
+        const tutor = await Tutor.findOne({ where: { id: id }, include: [Address, Student] });
         return tutor;
     }
 
@@ -71,6 +72,8 @@ export class TutorRepository {
 
 
         if (tutorFinded) {
+
+            
             if (tutor.Addresses.length > addressesDb.length) {
                 for (let i = 0; i < addressToAdd.length; i++) {
                     const address = await Address.findByPk(addressToAdd[i]);
@@ -83,17 +86,6 @@ export class TutorRepository {
                     await TutorsAddresses.destroy({ where: { AddressId: addressToDelete[i], TutorId: id } })
                 }
             }
-
-            if (tutor.Addresses.length == addressesDb.length) {
-                for (let i = 0; i < addressToDelete.length; i++) {
-                    await TutorsAddresses.destroy({ where: { AddressId: addressToDelete[i], TutorId: id } })
-                }
-                for (let i = 0; i < addressToAdd.length; i++) {
-                    const address = await Address.findByPk(addressToAdd[i]);
-                    await tutorFinded.addAddress(address);
-                }
-            }
-
         }
 
 

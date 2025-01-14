@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react';
 import './formView.css';
 
 import api from '../utils/api';
+import { studentType } from '../Types/Student';
+import { instrumentType } from '../Types/Instrument';
+import { graduationType } from '../Types/Graduation';
+import { addressType } from '../Types/Address';
+import { tutorType } from '../Types/Tutor';
 
 type Props = {
   formViewVisible: boolean;
@@ -9,23 +14,6 @@ type Props = {
   id: number;
 }
 
-type studentType = {
-  name: string;
-  phone: string;
-  id: number;
-  graduationId: number;
-  instrumentId: number;
-}
-
-type graduationType = {
-  id: number;
-  name: string;
-}
-
-type instrumentType = {
-  id: number;
-  name: string;
-}
 
 export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Props) => {
   const [student, setStudent] = useState<studentType>({});
@@ -35,7 +23,8 @@ export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Pro
   const [, setGraduations] = useState<graduationType[]>([]);
   const [instrumentName, setInstrumentName] = useState("");
   const [graduationName, setGraduationName] = useState("");
-  const [addresses, setAddresses] = useState([]);
+  const [addresses, setAddresses] = useState<addressType[]>([]);
+  const [tutors, setTutors] = useState<tutorType[]>([]);
 
   const token = localStorage.getItem('token');
 
@@ -49,6 +38,7 @@ export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Pro
       setInstrumentName(response.data.Instrument.name)
       setGraduationName(response.data.Graduation.name)
       setAddresses(response.data.Addresses);
+      setTutors(response.data.Tutors);
     })
       .catch((err) => console.log(err));
 
@@ -74,7 +64,7 @@ export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Pro
   console.log(student);
 
   return (
-   student && <div className="modal">
+    student && <div className="modal">
       <div className='form-container-view'>
         <h3>{student.name}</h3>
         <ul>
@@ -82,7 +72,13 @@ export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Pro
           <li>Instrumento: {instrumentName}</li>
           <li>Telefone: {student.phone}</li>
         </ul>
- 
+        <h4>Tutores</h4>
+        <ul>
+          {tutors.length > 0 && tutors.map((tutor) => (
+            <li key={tutor.id}>{tutor.name} -  {tutor.phone}</li>
+          ))}
+        </ul>
+        <h5>Endereços:</h5>
         {
           addresses.map((address) => (
             <ul key={address.id} className='addressView'>
@@ -94,7 +90,7 @@ export const FormViewStudent = ({ formViewVisible, setFormViewVisible, id }: Pro
           ))
         }
         <div className="form-actions">
-        <button onClick={() => setFormViewVisible(!formViewVisible)}>Fechar</button>
+          <button onClick={() => setFormViewVisible(!formViewVisible)}>Fechar</button>
         </div>
       </div>
     </div>
